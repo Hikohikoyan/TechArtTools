@@ -1,20 +1,117 @@
 {
- },{      ParameterName="RoughnessTex"      Group="贴图 Textures"      Texture=sampler2D'"/Game/WEDO_BR/BaseMaterials/BaseTextures/R.R"'      Desc="粗糙度贴图"
- },{      ParameterName="BaseColorTex"      Group="贴图 Textures"      Texture=sampler2D'"/Game/WEDO_BR/BaseMaterials/BaseTextures/D.D"'      Desc="颜色贴图"
- },{      ParameterName="AOTex"      Group="贴图 Textures"      Texture=sampler2D'"/Game/WEDO_BR/BaseMaterials/BaseTextures/R.R"'      Desc="AO贴图"
- },{      ParameterName="NormalTex"      Group="贴图 Textures"      Texture=sampler2D'"/Game/WEDO_BR/BaseMaterials/BaseTextures/T_Nor.T_Nor"'      Desc="法线贴图"
- },{      ParameterName="TintColor"      Group="基础参数 BaseParams"      Desc="叠色"
- },{      ParameterName="ShadowIntensity"      Group="04_光影调整"      Desc="阴影强度"
- },{      ParameterName="Lerp_Color"      Group="基础参数 BaseParams"      Desc="0原贴图颜色 - 1叠色"
- },{      ParameterName="BottomMaskSmooth"      Group="05_接地过渡"      Desc="接地过渡的边缘软硬"
- },{      ParameterName="BottomMaskBias"      Group="05_接地过渡"      Desc="接地过渡的高度"
- },{      ParameterName="BakedAO"      Group="基础参数 BaseParams"      Desc="顶点色AO强度（R通道）"
- },{      ParameterName="DetailUV"      Group="Detail"      Desc="细节UV大小"
- },{      ParameterName="NormalDetailTex"      Group="Detail"      Texture=sampler2D'"/Game/StarterContent/Textures/T_Detail_Rocky_N.T_Detail_Rocky_N"'      Desc="细节法线贴图"
- },{      ParameterName="DetailRo"      Group="Detail"      Desc="细节法线贴图旋转角度 [0 , 360]"
- },{      ParameterName="Detail_V_Scale"      Group="Detail"      Desc="细节法线贴图V方向缩放"
- },{      ParameterName="DepthThreshold"
- },{      ParameterName="WorldColorIntensity"      Group="05_接地过渡"      Desc="接地颜色明度"
- },{      ParameterName="LightMask"      Group="05_接地过渡"      Desc="受光面遮罩"
- },{      ParameterName="U_Scale"      Group="基础参数 BaseParams"      Desc="基础贴图U方向缩放"
- },{      ParameterName="WorldColorLerp"      Group="05_接地过渡"      Desc="接地颜色透明度 0 -1"}
+ },{
+      ParameterName=RoughnessTex;
+      Group=贴图 Textures;
+      Texture=sampler2D'/Game/WEDO_BR/BaseMaterials/BaseTextures/R.R';
+      SamplerType=SAMPLERTYPE_LinearColor;
+      Desc=粗糙度贴图;
+
+ },{
+      ParameterName=BaseColorTex;
+      Group=贴图 Textures;
+      Texture=sampler2D'/Game/WEDO_BR/BaseMaterials/BaseTextures/D.D';
+      Desc=颜色贴图;
+
+ },{
+      ParameterName=AOTex;
+      Group=贴图 Textures;
+      Texture=sampler2D'/Game/WEDO_BR/BaseMaterials/BaseTextures/R.R';
+      SamplerType=SAMPLERTYPE_LinearColor;
+      Desc=AO贴图;
+
+ },{
+      ParameterName=NormalTex;
+      Group=贴图 Textures;
+      Texture=sampler2D'/Game/WEDO_BR/BaseMaterials/BaseTextures/T_Nor.T_Nor';
+      SamplerType=SAMPLERTYPE_Normal;
+      Desc=法线贴图;
+      DefaultValue=(R=1.000000,G=1.000000,B=1.000000,A=1.000000);
+
+ },{
+      ParameterName=TintColor;
+      Group=基础参数 BaseParams;
+      Desc=叠色;
+      DefaultValue=1.000000;
+
+ },{
+      ParameterName=ShadowIntensity;
+      Group=04_光影调整;
+      Desc=阴影强度;
+      DefaultValue=0.500000;
+
+ },{
+      ParameterName=Lerp_Color;
+      Group=基础参数 BaseParams;
+      Desc=0原贴图颜色 - 1叠色;
+      DefaultValue=0.600000;
+
+ },{
+      ParameterName=BottomMaskSmooth;
+      Group=05_接地过渡;
+      Desc=接地过渡的边缘软硬;
+      DefaultValue=3.300000;
+
+ },{
+      ParameterName=BottomMaskBias;
+      Group=05_接地过渡;
+      Desc=接地过渡的高度;
+      DefaultValue=0.400000;
+
+ },{
+      ParameterName=BakedAO;
+      Group=基础参数 BaseParams;
+      Desc=顶点色AO强度（R通道）;
+      DefaultValue=5.000000;
+
+ },{
+      ParameterName=DetailUV;
+      Group=Detail;
+      Desc=细节UV大小;
+
+ },{
+      ParameterName=NormalDetailTex;
+      Group=Detail;
+      Texture=sampler2D'/Game/StarterContent/Textures/T_Detail_Rocky_N.T_Detail_Rocky_N';
+      SamplerType=SAMPLERTYPE_Normal;
+      Desc=细节法线贴图;
+      DefaultValue=90.000000;
+
+ },{
+      ParameterName=DetailRo;
+      Group=Detail;
+      Desc=细节法线贴图旋转角度 [0 , 360];
+      DefaultValue=0.500000;
+
+ },{
+      ParameterName=Detail_V_Scale;
+      Group=Detail;
+      Desc=细节法线贴图V方向缩放;
+      DefaultValue=0.600000;
+
+ },{
+      ParameterName=DepthThreshold;
+      DefaultValue=1.000000;
+
+ },{
+      ParameterName=WorldColorIntensity;
+      Group=05_接地过渡;
+      Desc=接地颜色明度;
+      DefaultValue=0.500000;
+
+ },{
+      ParameterName=LightMask;
+      Group=05_接地过渡;
+      Desc=受光面遮罩;
+      DefaultValue=1.000000;
+
+ },{
+      ParameterName=U_Scale;
+      Group=基础参数 BaseParams;
+      Desc=基础贴图U方向缩放;
+      DefaultValue=1.000000;
+
+ },{
+      ParameterName=WorldColorLerp;
+      Group=05_接地过渡;
+      Desc=接地颜色透明度 0 -1;
+}
