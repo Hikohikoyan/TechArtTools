@@ -8,7 +8,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_0"
       MaterialExpressionEditorX=688
       MaterialExpressionEditorY=-1264
       MaterialExpressionGuid=DF530F4D4D9BE1276E346EA16EEB046A
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_3"'
    NodePosX=688
@@ -27,12 +27,12 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_1"
       ExpressionGUID=8AD7FD85464204175A85C892136D9920
       Group="贴图 Textures"
       Coordinates=(Expression=MaterialExpressionMultiply'"MaterialGraphNode_66.MaterialExpressionMultiply_28"')
-      Texture=Texture2D'"/Game/WEDO_BR/BaseMaterials/BaseTextures/R.R"'
+      Texture=Texture2D'"/Game/Sample/BaseMaterials/BaseTextures/R.R"'
       SamplerType=SAMPLERTYPE_LinearColor
       MaterialExpressionEditorX=-1992
       MaterialExpressionEditorY=642
       MaterialExpressionGuid=598FA7114A5211C90DF418802581A813
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="粗糙度贴图"
       bCommentBubbleVisible=True
    End Object
@@ -62,7 +62,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_2"
       MaterialExpressionEditorX=1168
       MaterialExpressionEditorY=-672
       MaterialExpressionGuid=9A95840B4355F00EC8522DBD946B0F5E
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_9"'
    NodePosX=1168
@@ -83,7 +83,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_3"
       MaterialExpressionEditorX=976
       MaterialExpressionEditorY=-144
       MaterialExpressionGuid=E1FA3BAC4C8AD2DECFEF5B83A674157E
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_5"'
    NodePosX=976
@@ -102,11 +102,11 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_4"
       ExpressionGUID=9BD167DC4FAFB3393D0976A42820BA4A
       Group="贴图 Textures"
       Coordinates=(Expression=MaterialExpressionMultiply'"MaterialGraphNode_66.MaterialExpressionMultiply_28"')
-      Texture=Texture2D'"/Game/WEDO_BR/BaseMaterials/BaseTextures/D.D"'
+      Texture=Texture2D'"/Game/Sample/BaseMaterials/BaseTextures/D.D"'
       MaterialExpressionEditorX=-1992
       MaterialExpressionEditorY=162
       MaterialExpressionGuid=598FA7114A5211C90DF418802581A813
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="颜色贴图"
       bCommentBubbleVisible=True
    End Object
@@ -134,12 +134,12 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_5"
       ExpressionGUID=465711B7481E3BCEE28ED291699746D5
       Group="贴图 Textures"
       Coordinates=(Expression=MaterialExpressionMultiply'"MaterialGraphNode_66.MaterialExpressionMultiply_28"')
-      Texture=Texture2D'"/Game/WEDO_BR/BaseMaterials/BaseTextures/R.R"'
+      Texture=Texture2D'"/Game/Sample/BaseMaterials/BaseTextures/R.R"'
       SamplerType=SAMPLERTYPE_LinearColor
       MaterialExpressionEditorX=-1992
       MaterialExpressionEditorY=898
       MaterialExpressionGuid=598FA7114A5211C90DF418802581A813
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="AO贴图"
       bCommentBubbleVisible=True
    End Object
@@ -167,12 +167,12 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_6"
       ExpressionGUID=69BD44D4458C3452CB8991B9B6849DFA
       Group="贴图 Textures"
       Coordinates=(Expression=MaterialExpressionMultiply'"MaterialGraphNode_66.MaterialExpressionMultiply_28"')
-      Texture=Texture2D'"/Game/WEDO_BR/BaseMaterials/BaseTextures/T_Nor.T_Nor"'
+      Texture=Texture2D'"/Game/Sample/BaseMaterials/BaseTextures/T_Nor.T_Nor"'
       SamplerType=SAMPLERTYPE_Normal
       MaterialExpressionEditorX=-1992
       MaterialExpressionEditorY=402
       MaterialExpressionGuid=598FA7114A5211C90DF418802581A813
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="法线贴图"
       bCommentBubbleVisible=True
    End Object
@@ -203,7 +203,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_7"
       MaterialExpressionEditorX=-272
       MaterialExpressionEditorY=-1152
       MaterialExpressionGuid=0FA647524987EEDAAB4FA295C624BCE7
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="叠色"
       bCommentBubbleVisible=True
    End Object
@@ -228,7 +228,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_8"
       MaterialExpressionEditorX=912
       MaterialExpressionEditorY=144
       MaterialExpressionGuid=818B02D749977710864D3CB5A6DEE0EF
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionShadowStrength'"MaterialExpressionShadowStrength_0"'
    NodePosX=912
@@ -249,7 +249,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_9"
       MaterialExpressionEditorX=672
       MaterialExpressionEditorY=128
       MaterialExpressionGuid=19A06CAA417092E061E77C9A24ACCF3F
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="阴影强度"
       bCommentBubbleVisible=True
    End Object
@@ -272,7 +272,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_10
       MaterialExpressionEditorX=320
       MaterialExpressionEditorY=-1232
       MaterialExpressionGuid=0B39D59748E6BD332334FDA358657809
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_0"'
    NodePosX=320
@@ -295,7 +295,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_11
       MaterialExpressionEditorX=176
       MaterialExpressionEditorY=-1120
       MaterialExpressionGuid=8C193F2147669C69028955913237309B
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="0原贴图颜色 - 1叠色"
       bCommentBubbleVisible=True
    End Object
@@ -317,7 +317,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_12
       MaterialExpressionEditorX=16
       MaterialExpressionEditorY=-1152
       MaterialExpressionGuid=F149BF764A18B6E7739981889BA9D7FF
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_2"'
    NodePosX=16
@@ -334,7 +334,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_13
       MaterialExpressionEditorX=-2272
       MaterialExpressionEditorY=-112
       MaterialExpressionGuid=99A18EF743D1D5090D19B3ACF18219E9
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionSkyAtmosphereLightDirection'"MaterialExpressionSkyAtmosphereLightDirection_0"'
    NodePosX=-2272
@@ -351,7 +351,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_14
       MaterialExpressionEditorX=-1584
       MaterialExpressionEditorY=-80
       MaterialExpressionGuid=D635D2974D3AFA5169E222B5975B2E98
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionDotProduct'"MaterialExpressionDotProduct_0"'
    NodePosX=-1584
@@ -369,7 +369,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_15
       MaterialExpressionEditorX=-1472
       MaterialExpressionEditorY=-80
       MaterialExpressionGuid=64931B6A4C0EF04B316F71B222E3DB6A
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionSaturate'"MaterialExpressionSaturate_0"'
    NodePosX=-1472
@@ -382,14 +382,14 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_16
    Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_8"
    End Object
    Begin Object Name="MaterialExpressionMaterialFunctionCall_8"
-      MaterialFunction=MaterialFunction'"/Game/WEDO_BR/BaseMaterials/Environment/Test/Landscape/MF_Toonstep.MF_Toonstep"'
+      MaterialFunction=MaterialFunction'"/Game/Sample/BaseMaterials/Environment/Test/Landscape/MF_Toonstep.MF_Toonstep"'
       FunctionInputs(0)=(ExpressionInputId=64F2CE9C4A529321ED12CA80AC737DCD,Input=(Expression=MaterialExpressionMaterialFunctionCall'"MaterialGraphNode_54.MaterialExpressionMaterialFunctionCall_18"',OutputIndex=3,InputName="Val"))
       FunctionInputs(1)=(ExpressionInputId=6070B2D04D92742FE7E9699CE6B8CFE9,Input=(Expression=MaterialExpressionScalarParameter'"MaterialGraphNode_17.MaterialExpressionScalarParameter_15"',InputName="In"))
       FunctionOutputs(0)=(ExpressionOutputId=199BB66D47A1769D382D43AA11FC821A,Output=(OutputName="Result"))
       MaterialExpressionEditorX=-1248
       MaterialExpressionEditorY=-656
       MaterialExpressionGuid=010BFE134B102672B2C1BD987CA411E3
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Outputs(0)=(OutputName="Result")
    End Object
    MaterialExpression=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_8"'
@@ -412,7 +412,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_17
       MaterialExpressionEditorX=-1888
       MaterialExpressionEditorY=-672
       MaterialExpressionGuid=B714C8CD4CEB4720EDBC61BB11E47E3D
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="接地过渡的边缘软硬"
       bCommentBubbleVisible=True
    End Object
@@ -434,7 +434,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_18
       MaterialExpressionEditorX=-800
       MaterialExpressionEditorY=-784
       MaterialExpressionGuid=0CBA837B45AAB380C3BF2DA690355035
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_7"'
    NodePosX=-800
@@ -457,7 +457,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_19
       MaterialExpressionEditorX=-1040
       MaterialExpressionEditorY=-768
       MaterialExpressionGuid=B714C8CD4CEB4720EDBC61BB11E47E3D
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="接地过渡的高度"
       bCommentBubbleVisible=True
    End Object
@@ -478,7 +478,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_20
       MaterialExpressionEditorX=-1664
       MaterialExpressionEditorY=-704
       MaterialExpressionGuid=1DF6BE9341053E60A2719A8E2AC8A5EC
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionSaturate'"MaterialExpressionSaturate_1"'
    NodePosX=-1664
@@ -495,7 +495,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_21
       MaterialExpressionEditorX=-624
       MaterialExpressionEditorY=-816
       MaterialExpressionGuid=5CAF81F9426E491FE658A39B9B0F0A28
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionSaturate'"MaterialExpressionSaturate_2"'
    NodePosX=-624
@@ -513,7 +513,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_22
       MaterialExpressionEditorX=-1344
       MaterialExpressionEditorY=-80
       MaterialExpressionGuid=EFF22E2240BABAF8F5C0D4B08948AC9D
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionAdd'"MaterialExpressionAdd_1"'
    NodePosX=-1344
@@ -530,7 +530,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_23
       MaterialExpressionEditorX=688
       MaterialExpressionEditorY=-160
       MaterialExpressionGuid=4F8D93CD42F84E0EDA021194A03AECC6
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionVertexColor'"MaterialExpressionVertexColor_0"'
    NodePosX=688
@@ -555,7 +555,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_24
       MaterialExpressionEditorX=832
       MaterialExpressionEditorY=-64
       MaterialExpressionGuid=56FE21CD4F53C547A8833386492F3698
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="顶点色AO强度（R通道）"
       bCommentBubbleVisible=True
    End Object
@@ -578,7 +578,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_25
       MaterialExpressionEditorX=-1056
       MaterialExpressionEditorY=320
       MaterialExpressionGuid=0667CB404860693A7CC312900256E008
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionComponentMask'"MaterialExpressionComponentMask_2"'
    NodePosX=-1056
@@ -596,7 +596,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_26
       MaterialExpressionEditorX=-2379
       MaterialExpressionEditorY=1610
       MaterialExpressionGuid=E791C03E49E2DF6CBF44A4B054193BA2
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_11"'
    NodePosX=-2379
@@ -619,7 +619,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_27
       MaterialExpressionEditorX=-2523
       MaterialExpressionEditorY=1642
       MaterialExpressionGuid=C4372F8D4C79E27016AFB896F28F8BD2
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="细节UV大小"
       bCommentBubbleVisible=True
    End Object
@@ -645,7 +645,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_28
       MaterialExpressionEditorX=-1499
       MaterialExpressionEditorY=1674
       MaterialExpressionGuid=598FA7114A5211C90DF418802581A813
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="细节法线贴图"
       bCommentBubbleVisible=True
    End Object
@@ -676,7 +676,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_29
       MaterialExpressionEditorX=800
       MaterialExpressionEditorY=-592
       MaterialExpressionGuid=CB9649AC4EC7C551FA9CB38CE99D36CB
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Outputs(0)=(OutputName="Result")
    End Object
    MaterialExpression=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_10"'
@@ -694,7 +694,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_30
       MaterialExpressionEditorX=-2526
       MaterialExpressionEditorY=1564
       MaterialExpressionGuid=442772C54E6A1E2CA76B44AE98D42CD6
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionTextureCoordinate'"MaterialExpressionTextureCoordinate_2"'
    NodePosX=-2526
@@ -714,7 +714,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_31
       MaterialExpressionEditorX=-1856
       MaterialExpressionEditorY=1680
       MaterialExpressionGuid=5AF94651464934E5CB152E8DA3658027
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Outputs(0)=(OutputName="Rotated Values")
    End Object
    MaterialExpression=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_11"'
@@ -735,7 +735,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_32
       MaterialExpressionEditorX=-2026
       MaterialExpressionEditorY=1744
       MaterialExpressionGuid=F4C2B1E0477EDD7E2BB0AEBECEA3D6C3
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionConstant2Vector'"MaterialExpressionConstant2Vector_0"'
    NodePosX=-2026
@@ -755,7 +755,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_33
       MaterialExpressionEditorX=-2523
       MaterialExpressionEditorY=1866
       MaterialExpressionGuid=B75FD0224CDCB78B84A52EA31C181E3F
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="细节法线贴图旋转角度 [0 , 360]"
       bCommentBubbleVisible=True
    End Object
@@ -777,7 +777,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_34
       MaterialExpressionEditorX=-2330
       MaterialExpressionEditorY=1862
       MaterialExpressionGuid=6ECB3EA5473EE4EB2D07849EB0CB1969
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionDivide'"MaterialExpressionDivide_0"'
    NodePosX=-2330
@@ -796,7 +796,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_35
       MaterialExpressionEditorX=-2139
       MaterialExpressionEditorY=1642
       MaterialExpressionGuid=E1F517344C2CF527C5A0EEAFF49ACA6D
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_12"'
    NodePosX=-2139
@@ -814,7 +814,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_36
       MaterialExpressionEditorX=-2379
       MaterialExpressionEditorY=1706
       MaterialExpressionGuid=1EA68A654209A6F451328CB34ADAD4F2
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionConstant'"MaterialExpressionConstant_12"'
    NodePosX=-2379
@@ -831,7 +831,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_37
       MaterialExpressionEditorX=-2267
       MaterialExpressionEditorY=1722
       MaterialExpressionGuid=5E67525344E528ACDCFCA4B74F63E6BC
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionAppendVector'"MaterialExpressionAppendVector_7"'
    NodePosX=-2267
@@ -854,7 +854,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_38
       MaterialExpressionEditorX=-2523
       MaterialExpressionEditorY=1770
       MaterialExpressionGuid=FBB70C4C438789933857DAB0FD66108E
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="细节法线贴图V方向缩放"
       bCommentBubbleVisible=True
    End Object
@@ -874,7 +874,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_39
       MaterialExpressionEditorX=-256
       MaterialExpressionEditorY=-1520
       MaterialExpressionGuid=1BA0E34B4F57C25B898117A825EBACE2
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionStylizedWorldColor'"MaterialExpressionStylizedWorldColor_1"'
    NodePosX=-256
@@ -894,7 +894,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_40
       MaterialExpressionEditorX=-1025
       MaterialExpressionEditorY=1314
       MaterialExpressionGuid=06A08909407CB650D44613A0362CB534
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionIf'"MaterialExpressionIf_0"'
    NodePosX=-1025
@@ -914,7 +914,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_41
       MaterialExpressionEditorX=-1665
       MaterialExpressionEditorY=1250
       MaterialExpressionGuid=317BD0A44A83A34F54B6A9870E22D1E9
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionPixelDepth'"MaterialExpressionPixelDepth_0"'
    NodePosX=-1665
@@ -931,7 +931,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_42
       MaterialExpressionEditorX=-1521
       MaterialExpressionEditorY=1266
       MaterialExpressionGuid=E75605F94289DF534ACFC283651619DB
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_14"'
    NodePosX=-1521
@@ -949,7 +949,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_43
       MaterialExpressionEditorX=-1329
       MaterialExpressionEditorY=1266
       MaterialExpressionGuid=C92886A54F96615DEB70949E61BDD8C5
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionSaturate'"MaterialExpressionSaturate_6"'
    NodePosX=-1329
@@ -966,7 +966,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_44
       MaterialExpressionEditorX=-1450
       MaterialExpressionEditorY=1474
       MaterialExpressionGuid=CC0E59D44F3B1510D3D4ABB879BE9CDD
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionConstant3Vector'"MaterialExpressionConstant3Vector_7"'
    NodePosX=-1450
@@ -985,7 +985,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_45
       MaterialExpressionEditorX=-1335
       MaterialExpressionEditorY=1340
       MaterialExpressionGuid=207F42CF4D0D072823739D9ACD7E820A
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionScalarParameter'"MaterialExpressionScalarParameter_21"'
    NodePosX=-1335
@@ -1002,7 +1002,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_46
       MaterialExpressionEditorX=-94
       MaterialExpressionEditorY=-814
       MaterialExpressionGuid=D01816D34D8434E3CAA0088CF379BDE5
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       bCollapsed=True
    End Object
    MaterialExpression=MaterialExpressionConstant3Vector'"MaterialExpressionConstant3Vector_8"'
@@ -1021,7 +1021,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_47
       MaterialExpressionEditorX=18
       MaterialExpressionEditorY=-830
       MaterialExpressionGuid=6528A643477F98FC348B859767179E03
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionTransform'"MaterialExpressionTransform_3"'
    NodePosX=18
@@ -1039,7 +1039,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_48
       MaterialExpressionEditorX=48
       MaterialExpressionEditorY=-1472
       MaterialExpressionGuid=3956398145705906FDFDF89420C538A6
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_18"'
    NodePosX=48
@@ -1061,7 +1061,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_49
       MaterialExpressionEditorX=-256
       MaterialExpressionEditorY=-1456
       MaterialExpressionGuid=B714C8CD4CEB4720EDBC61BB11E47E3D
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="接地颜色明度"
       bCommentBubbleVisible=True
    End Object
@@ -1081,7 +1081,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_50
       MaterialExpressionEditorX=-256
       MaterialExpressionEditorY=-1376
       MaterialExpressionGuid=54DF2352486416BE36B698B397408B36
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionEyeAdaptation'"MaterialExpressionEyeAdaptation_1"'
    NodePosX=-256
@@ -1098,7 +1098,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_51
       MaterialExpressionEditorX=224
       MaterialExpressionEditorY=-1456
       MaterialExpressionGuid=9992B47E46294B3F1992479C5E79BD96
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionDivide'"MaterialExpressionDivide_2"'
    NodePosX=224
@@ -1115,7 +1115,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_52
       MaterialExpressionEditorX=-1888
       MaterialExpressionEditorY=-800
       MaterialExpressionGuid=69C757BF4DB1E3D97DD05387F7429DB4
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionPreSkinnedPosition'"MaterialExpressionPreSkinnedPosition_0"'
    NodePosX=-1888
@@ -1131,7 +1131,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_53
       MaterialExpressionEditorX=-1504
       MaterialExpressionEditorY=-752
       MaterialExpressionGuid=947C48ED4AC8251AFA4F50A59E19714D
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionVertexInterpolator'"MaterialExpressionVertexInterpolator_0"'
    NodePosX=-1504
@@ -1153,7 +1153,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_54
       MaterialExpressionEditorX=-1312
       MaterialExpressionEditorY=-784
       MaterialExpressionGuid=7C02968D4EC0D69C27793B9BD0C23B61
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Outputs(0)=(OutputName="RGB")
       Outputs(1)=(OutputName="R")
       Outputs(2)=(OutputName="G")
@@ -1178,7 +1178,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_55
       MaterialExpressionEditorX=-1648
       MaterialExpressionEditorY=-800
       MaterialExpressionGuid=A9C72D384E2B7AC27F0F9A84D4A0E2C5
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_25"'
    NodePosX=-1648
@@ -1197,7 +1197,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_56
       MaterialExpressionEditorX=-1936
       MaterialExpressionEditorY=-224
       MaterialExpressionGuid=11B90B574BDF06925165ED8BC42BB8FF
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionDotProduct'"MaterialExpressionDotProduct_4"'
    NodePosX=-1936
@@ -1215,7 +1215,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_57
       MaterialExpressionEditorX=-1824
       MaterialExpressionEditorY=-224
       MaterialExpressionGuid=EAFBC90946FA312B8F43E0A0B6D9F399
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionSaturate'"MaterialExpressionSaturate_11"'
    NodePosX=-1824
@@ -1231,7 +1231,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_58
       MaterialExpressionEditorX=-2272
       MaterialExpressionEditorY=-224
       MaterialExpressionGuid=FCBBE0BA4849F06D7BD35ABDC2790D2B
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionVertexNormalWS'"MaterialExpressionVertexNormalWS_4"'
    NodePosX=-2272
@@ -1249,7 +1249,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_59
       MaterialExpressionEditorX=992
       MaterialExpressionEditorY=-752
       MaterialExpressionGuid=5EA30DD546B371E156889C99F1DA5214
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_15"'
    NodePosX=992
@@ -1264,14 +1264,14 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_60
    Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_19"
    End Object
    Begin Object Name="MaterialExpressionMaterialFunctionCall_19"
-      MaterialFunction=MaterialFunction'"/Game/WEDO_BR/BaseMaterials/Environment/Test/Landscape/MF_Toonstep.MF_Toonstep"'
+      MaterialFunction=MaterialFunction'"/Game/Sample/BaseMaterials/Environment/Test/Landscape/MF_Toonstep.MF_Toonstep"'
       FunctionInputs(0)=(ExpressionInputId=64F2CE9C4A529321ED12CA80AC737DCD,Input=(Expression=MaterialExpressionSaturate'"MaterialGraphNode_57.MaterialExpressionSaturate_11"',InputName="Val"))
       FunctionInputs(1)=(ExpressionInputId=6070B2D04D92742FE7E9699CE6B8CFE9,Input=(Expression=MaterialExpressionScalarParameter'"MaterialGraphNode_61.MaterialExpressionScalarParameter_25"',InputName="In"))
       FunctionOutputs(0)=(ExpressionOutputId=199BB66D47A1769D382D43AA11FC821A,Output=(OutputName="Result"))
       MaterialExpressionEditorX=-1424
       MaterialExpressionEditorY=-224
       MaterialExpressionGuid=010BFE134B102672B2C1BD987CA411E3
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Outputs(0)=(OutputName="Result")
    End Object
    MaterialExpression=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_19"'
@@ -1294,7 +1294,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_61
       MaterialExpressionEditorX=-1584
       MaterialExpressionEditorY=-176
       MaterialExpressionGuid=EEF0C60641A945635E1EE9918B00F67D
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="受光面遮罩"
       bCommentBubbleVisible=True
    End Object
@@ -1315,7 +1315,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Knot Name="MaterialGraphNo
       MaterialExpressionEditorX=-1232
       MaterialExpressionEditorY=-192
       MaterialExpressionGuid=8656E5164781D3D7AA6A2EB8FB345188
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionReroute'"MaterialExpressionReroute_0"'
    NodePosX=-1232
@@ -1335,7 +1335,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_62
       MaterialExpressionEditorX=560
       MaterialExpressionEditorY=-784
       MaterialExpressionGuid=97E5314246DC4968C8878FA988FBEBCF
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_16"'
    NodePosX=560
@@ -1353,7 +1353,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_63
       MaterialExpressionEditorX=-94
       MaterialExpressionEditorY=-734
       MaterialExpressionGuid=FCBBE0BA4849F06D7BD35ABDC2790D2B
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionVertexNormalWS'"MaterialExpressionVertexNormalWS_5"'
    NodePosX=-94
@@ -1371,7 +1371,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_64
       MaterialExpressionEditorX=114
       MaterialExpressionEditorY=-734
       MaterialExpressionGuid=6528A643477F98FC348B859767179E03
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionTransform'"MaterialExpressionTransform_5"'
    NodePosX=114
@@ -1387,7 +1387,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_65
       MaterialExpressionEditorX=-2504
       MaterialExpressionEditorY=338
       MaterialExpressionGuid=0179FF884166D9F5ABA6428C80D5C523
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionTextureCoordinate'"MaterialExpressionTextureCoordinate_3"'
    NodePosX=-2504
@@ -1404,7 +1404,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_66
       MaterialExpressionEditorX=-2232
       MaterialExpressionEditorY=354
       MaterialExpressionGuid=D19357CF4505B13577DDE5B87C274FE9
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_28"'
    NodePosX=-2232
@@ -1422,7 +1422,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_67
       MaterialExpressionEditorX=-2512
       MaterialExpressionEditorY=576
       MaterialExpressionGuid=22198A884DF6B792BF470B8F361EF031
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionConstant'"MaterialExpressionConstant_17"'
    NodePosX=-2512
@@ -1441,7 +1441,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_68
       MaterialExpressionEditorX=-2510
       MaterialExpressionEditorY=500
       MaterialExpressionGuid=6510F3AA4028D407364333AF884C0F69
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="基础贴图U方向缩放"
       bCommentBubbleVisible=True
    End Object
@@ -1463,7 +1463,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_69
       MaterialExpressionEditorX=-2328
       MaterialExpressionEditorY=498
       MaterialExpressionGuid=82C2B9F143369C0FE23335B4B6643A46
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionAppendVector'"MaterialExpressionAppendVector_8"'
    NodePosX=-2328
@@ -1484,7 +1484,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_70
       MaterialExpressionEditorX=-1736
       MaterialExpressionEditorY=178
       MaterialExpressionGuid=79E987D34438F6EDFADFB08624C16FA1
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionNamedRerouteDeclaration'"MaterialExpressionNamedRerouteDeclaration_0"'
    NodePosX=-1736
@@ -1503,7 +1503,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_71
       MaterialExpressionEditorX=-256
       MaterialExpressionEditorY=-1264
       MaterialExpressionGuid=A49E65A0443206389AC3E4BE636DCDC3
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionNamedRerouteUsage'"MaterialExpressionNamedRerouteUsage_0"'
    NodePosX=-256
@@ -1522,7 +1522,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_72
       MaterialExpressionEditorX=-512
       MaterialExpressionEditorY=-816
       MaterialExpressionGuid=974B26374583C9BE0A99FE8988FE4246
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionNamedRerouteDeclaration'"MaterialExpressionNamedRerouteDeclaration_1"'
    NodePosX=-512
@@ -1541,7 +1541,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_73
       MaterialExpressionEditorX=352
       MaterialExpressionEditorY=-1072
       MaterialExpressionGuid=20DBE172495040F2CC16448BF90617A0
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionNamedRerouteUsage'"MaterialExpressionNamedRerouteUsage_1"'
    NodePosX=352
@@ -1559,7 +1559,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_74
       MaterialExpressionEditorX=448
       MaterialExpressionEditorY=-1440
       MaterialExpressionGuid=E267FA7B496FC574F6B7C290911AB6C3
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_17"'
    NodePosX=448
@@ -1582,7 +1582,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_75
       MaterialExpressionEditorX=96
       MaterialExpressionEditorY=-1296
       MaterialExpressionGuid=B714C8CD4CEB4720EDBC61BB11E47E3D
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
       Desc="接地颜色透明度 0 -1"
       bCommentBubbleVisible=True
    End Object
@@ -1606,7 +1606,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_76
       MaterialExpressionEditorX=368
       MaterialExpressionEditorY=-832
       MaterialExpressionGuid=C6610DDF452CC07F988651869D766DD6
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionNamedRerouteDeclaration'"MaterialExpressionNamedRerouteDeclaration_2"'
    NodePosX=368
@@ -1625,7 +1625,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_77
       MaterialExpressionEditorX=368
       MaterialExpressionEditorY=-768
       MaterialExpressionGuid=0D26ED57483ED4EB320F98839591B6F8
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionNamedRerouteUsage'"MaterialExpressionNamedRerouteUsage_3"'
    NodePosX=368
@@ -1642,7 +1642,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_78
       MaterialExpressionEditorX=784
       MaterialExpressionEditorY=-720
       MaterialExpressionGuid=0D26ED57483ED4EB320F98839591B6F8
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionNamedRerouteUsage'"MaterialExpressionNamedRerouteUsage_4"'
    NodePosX=784
@@ -1659,7 +1659,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_79
       MaterialExpressionEditorX=800
       MaterialExpressionEditorY=-480
       MaterialExpressionGuid=20DBE172495040F2CC16448BF90617A0
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionNamedRerouteUsage'"MaterialExpressionNamedRerouteUsage_5"'
    NodePosX=800
@@ -1676,7 +1676,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_80
       MaterialExpressionEditorX=-1664
       MaterialExpressionEditorY=1536
       MaterialExpressionGuid=8CD039F54EBF298DCDC2539D22E4FA27
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionAdd'"MaterialExpressionAdd_8"'
    NodePosX=-1664
@@ -1695,7 +1695,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_81
       MaterialExpressionEditorX=-1904
       MaterialExpressionEditorY=1504
       MaterialExpressionGuid=D046223849F11FD88DF718A295BF284B
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpression=MaterialExpressionMultiply'"MaterialExpressionMultiply_29"'
    NodePosX=-1904
@@ -1716,7 +1716,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=-1938
       MaterialExpressionEditorY=-850
       MaterialExpressionGuid=4441F7E44AF35AE9F9BCB9B613D3370F
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_0"'
    CommentColor=(R=0.038209,G=0.361111,B=0.129096,A=1.000000)
@@ -1738,7 +1738,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=-1072
       MaterialExpressionEditorY=-848
       MaterialExpressionGuid=D27FD649471033FD0B5FF792A30EDCC8
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_1"'
    CommentColor=(R=0.121480,G=1.000000,B=0.425658,A=1.000000)
@@ -1759,7 +1759,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=-2322
       MaterialExpressionEditorY=-274
       MaterialExpressionGuid=D800E7D84F106BCFED281ABE40971B33
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_2"'
    NodePosX=-2322
@@ -1780,7 +1780,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=-144
       MaterialExpressionEditorY=-880
       MaterialExpressionGuid=ED666F814B37F42268A5C89711C50574
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_3"'
    CommentColor=(R=0.072747,G=0.177083,B=0.027549,A=1.000000)
@@ -1801,7 +1801,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=-2576
       MaterialExpressionEditorY=1200
       MaterialExpressionGuid=2393E29B40337A5063EB68A5AFCC2A27
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_4"'
    NodePosX=-2576
@@ -1821,7 +1821,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=-2560
       MaterialExpressionEditorY=112
       MaterialExpressionGuid=AD10A5E44FE696C2A38748A92E40A541
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_5"'
    NodePosX=-2560
@@ -1841,7 +1841,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=638
       MaterialExpressionEditorY=-210
       MaterialExpressionGuid=FD5BDFE54F552426758D37A9EC5D9B89
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_6"'
    NodePosX=638
@@ -1861,7 +1861,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=734
       MaterialExpressionEditorY=-802
       MaterialExpressionGuid=EF3720EB4BF0B513144721AEE49D3D40
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_7"'
    NodePosX=734
@@ -1881,7 +1881,7 @@ Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Comment Name="MaterialGrap
       MaterialExpressionEditorX=-322
       MaterialExpressionEditorY=-1570
       MaterialExpressionGuid=CB4A5E0348334F4AA2ABF7A4749AB030
-      Material=PreviewMaterial'"/Engine/Transient.BR_Env_Branch"'
+      Material=PreviewMaterial'"/Engine/Transient.Sample_Env_Sampleanch"'
    End Object
    MaterialExpressionComment=MaterialExpressionComment'"MaterialExpressionComment_8"'
    NodePosX=-322

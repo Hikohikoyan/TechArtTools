@@ -1,7 +1,16 @@
+sampler2D RoughnessTex;
+// 粗糙度贴图
+
+sampler2D BaseColorTex;
+// 颜色贴图
+
+sampler2D AOTex;
+// AO贴图
+
 sampler2D NormalTex;
 // 法线贴图
 
-half TintColor;
+half4 TintColor;
 // 叠色
 
 half ShadowIntensity;
@@ -18,6 +27,9 @@ half BottomMaskBias;
 
 half BakedAO;
 // 顶点色AO强度（R通道）
+
+half DetailUV;
+// 细节UV大小
 
 sampler2D NormalDetailTex;
 // 细节法线贴图
@@ -39,3 +51,6 @@ half LightMask;
 
 half U_Scale;
 // 基础贴图U方向缩放
+
+half WorldColorLerp;
+// 接地颜色透明度0-1
