@@ -32,7 +32,6 @@ shader_dict = {
     "Begin Object":"",
     "Class=/Script/UnrealEd.MaterialGraphNode":"",
     '"':"",
-    "Name=":" ",
     "MaterialExpression":"",
     "End Object":"\n"
 }
@@ -110,8 +109,9 @@ def replace_by_config(content,custom_config):
                 line = re.sub(r"\b{}\b".format(key), value, line)
             if is_key_in_line(line,"ParameterName"):
                 new_lines.append("\n },")
-                line = "{" + line
-            new_lines.append(line)
+                line = "{\n" + line
+            line = replace_content(line,shader_dict)
+            new_lines.append(line+";\n")
     content = "".join(new_lines)
     return content
 
@@ -125,7 +125,6 @@ def remove_lines(content, custom_config):
         if line.startswith("CustomProperties"):
             line = line.replace("(","").replace(")","")
             line = clean_line(line,",Pin") +  clean_line(line,"LinkedTo")
-
             new_lines.append(line)  # 否则将该行加入新的列表中
         else:
             new_lines.append(line)  # 否则将该行加入新的列表中
@@ -135,9 +134,12 @@ match_param = {
     "ParameterName",
     "Group",
     "Desc",
-    "Texture=Texture2D"
+    "Texture=Texture2D",
+    "SamplerType",
+    "DefaultValue",
+    "   Begin Object Name="
 }
-content = "{" + replace_by_config(content,match_param)
+content = "{" + replace_by_config(content,match_param)+"}"
 
 # 将转换后的内容写入输出文件
 with open(output_file, "w", encoding="utf-8") as f:
