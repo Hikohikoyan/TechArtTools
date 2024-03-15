@@ -97,20 +97,20 @@ def replace_content(content, custom_config):
         content = content.replace(key, value)
     return content
 
-def replace_by_config(content,custom_config):
+def replace_by_config(content,custom_config,start,end):
     # 删除行首没有匹配到自定义配置项的行和空行
     lines = content.split("\n")
     new_lines = []
     for line in lines:
         # 只保留符合行首匹配的行
         if any(line.lstrip().startswith(config) for config in custom_config):
-            # 替换hlsl shader code为cgsl
-            for key, value in shader_dict.items():
-                line = re.sub(r"\b{}\b".format(key), value, line)
-            if is_key_in_line(line,"ParameterName"):
+            if is_key_in_line(line,start):
                 new_lines.append("\n },")
-                line = "{\n" + line
-            line = replace_content(line,shader_dict)
+                line = "{\n" + line 
+            #line = replace_content(line,shader_dict)
+            if is_key_in_line(line,end):
+                new_lines.append("},")
+                line = "{"
             new_lines.append(line+";\n")
     content = "".join(new_lines)
     return content
@@ -130,6 +130,9 @@ def remove_lines(content, custom_config):
             new_lines.append(line)  # 否则将该行加入新的列表中
     return "\n".join(new_lines)  # 将新的列表转换成字符串，每行以换行符连接起来
 
+
+start = '   Begin Object Name="MaterialExpression'#"ParameterName"
+end = "End Object"
 match_param = {
     "ParameterName",
     "Group",
@@ -137,9 +140,15 @@ match_param = {
     "Texture=Texture2D",
     "SamplerType",
     "DefaultValue",
-    "   Begin Object Name="
+    start,
+    end
 }
-content = "{" + replace_by_config(content,match_param)+"}"
+
+
+content = "{" + replace_by_config(content,match_param,start,end)+"}"
+content = content.replace("{;","{")
+content = content.replace("=",":")
+content = content.replace("{\n},","").replace('{'+'},',"")
 
 # 将转换后的内容写入输出文件
 with open(output_file, "w", encoding="utf-8") as f:
