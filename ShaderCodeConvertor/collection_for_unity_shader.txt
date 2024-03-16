@@ -1,0 +1,82 @@
+{      Desc:ms_BaseColor;
+      Desc:ms_Metallic;
+      Desc:ms_Roughness;
+      Desc:ms_Normal;
+
+ },{
+      ParameterName:Enable Tesselation;
+      Group:Material Settings;
+      Desc:ms_WorldDisplacement;
+
+ },{
+      ParameterName:Enable Subdivision;
+      Group:Material Settings;
+      Desc:ms_TessellationMultiplier;
+
+ },{
+      ParameterName:Normal;
+      Group:Input Textures;
+      Texture:Texture2D'/Engine/EngineMaterials/DefaultNormal.DefaultNormal';
+      SamplerType:SAMPLERTYPE_Normal;
+
+ },{
+      ParameterName:Normal Intensity;
+      Group:Material Settings;
+      DefaultValue:1.000000;
+
+ },{
+      ParameterName:Roughness Intensity;
+      Group:Material Settings;
+      DefaultValue:1.000000;
+
+ },{
+      ParameterName:Tiling;
+      Group:Material Settings;
+      DefaultValue:1.000000;
+
+ },{
+      ParameterName:Crop Y;
+      Group:Material Settings;
+      DefaultValue:1.000000;
+
+ },{
+      ParameterName:Crop X;
+      Group:Material Settings;
+      DefaultValue : 1.000000;
+
+ },{
+      ParameterName:Metallic;
+      Group:Material Settings;
+      DefaultValue:1.000000;
+
+ },{
+      ParameterName:Displacement Offset;
+      Group:Material Settings;
+      DefaultValue:2.000000;
+
+ },{
+      ParameterName:Displacement Multiplier;
+      Group:Material Settings;
+
+ },{
+      ParameterName:Albedo;
+      Group:Input Textures;
+      Texture:Texture2D'/Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse';
+      DefaultValue:(DefaultValue : 0.500000,G:0.500000,B:0.500000,A:1.000000);
+
+ },{
+      ParameterName:Color Overlay;
+      Group:Material Settings;
+      DefaultValue:1.000000;
+
+ },{
+      ParameterName:Overlay Intensity;
+      Group:Material Settings;
+
+ },{
+      ParameterName:RMD;
+      Group:Input Textures;
+      Texture:Texture2D'/Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid';
+      DefaultValue : True;
+}
+////

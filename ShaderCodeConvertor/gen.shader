@@ -1,56 +1,131 @@
-_RoughnessTex("粗糙度贴图 RoughnessTex", 2D) = "black" {}
-// 粗糙度贴图
+Shader 'Sample/YourShaderName'
+{
+    Properties
+    {
+        _Normal(" Normal", 2D) = "bump" {}
+        // InputTextures
 
-_BaseColorTex("颜色贴图 BaseColorTex", 2D) = "white" {}
-// 颜色贴图
+        _NormalIntensity(" NormalIntensity", Range(0,1)) =   1.0
+        // MaterialSettings
 
-_AOTex("AO贴图 AOTex", 2D) = "black" {}
-// AO贴图
+        _RoughnessIntensity(" RoughnessIntensity", Range(0,1)) =   1.0
+        // MaterialSettings
 
-_NormalTex("法线贴图 NormalTex", 2D) = "bump" {}
-// 法线贴图
+        _Tiling(" Tiling", Range(0,1)) =   1.0
+        // MaterialSettings
 
-_TintColor("叠色 TintColor", Color) = (1,1,1) 
-// 叠色
+        _CropY(" CropY", Range(0,1)) =   1.0
+        // MaterialSettings
 
-_ShadowIntensity("阴影强度 ShadowIntensity", Range(0,1)) =   1.0
-// 阴影强度
+        _CropX(" CropX", Range(0,1)) =   1.0
+        // MaterialSettings
 
-_Lerp_Color("0原贴图颜色-1叠色 Lerp_Color", Range(0,1)) =   0.50
-// 0原贴图颜色-1叠色
+        _Metallic(" Metallic", Range(0,1)) =   1.0
+        // MaterialSettings
 
-_BottomMaskSmooth("接地过渡的边缘软硬 BottomMaskSmooth", Range(0,1)) =   0.60
-// 接地过渡的边缘软硬
+        _DisplacementOffset(" DisplacementOffset", Range(0,1)) =   2.0
+        // MaterialSettings
 
-_BottomMaskBias("接地过渡的高度 BottomMaskBias", Range(0,1)) =   3.30
-// 接地过渡的高度
+        _Albedo(" Albedo", Range(0,1)) = 4  0.50,0.50,0.50,1.0
+        // InputTextures
 
-_BakedAO("顶点色AO强度（R通道） BakedAO", Range(0,1)) =   0.40
-// 顶点色AO强度（R通道）
+        _ColorOverlay(" ColorOverlay", Range(0,1)) =   1.0
+        // MaterialSettings
 
-_DetailUV("细节UV大小 DetailUV", Range(0,1)) =   5.0
-// 细节UV大小
+        _RMD(" RMD", Range(0,1)) =   True
+        // InputTextures
 
-_NormalDetailTex("细节法线贴图 NormalDetailTex", 2D) = "bump" {}
-// 细节法线贴图
+    }
 
-_DetailRo("细节法线贴图旋转角度[0,360] DetailRo", Range(0,1)) =   90.0
-// 细节法线贴图旋转角度[0,360]
+    SubShader
+    {
+        Tags
+        {
+            "Queue" = "Geometry"
+            "RenderType" = "Opaque"
+        }
+        
 
-_Detail_V_Scale("细节法线贴图V方向缩放 Detail_V_Scale", Range(0,1)) =   0.50
-// 细节法线贴图V方向缩放
+        Pass
+        {
+            Tags
+            {
+                "LightMode" = "ForwardBase"
+            }
+            
 
-_DepthThreshold(" DepthThreshold", Range(0,1)) =   0.60
-// 
+            CGPROGRAM
+            #pragma target 3.0
+            struct VertexInput
+            {
+                float4  Vertex  :   POSITION;
+                half3  Normal  :   NORMAL;
+            };
+            struct VertexOutput
+            {
+                float4  Pos    : SV_POSITION;
+                float3  WorldPos   : ATTRIB0;
+            };
+            #pragma vertex vert
+            #pragma fragment frag
 
-_WorldColorIntensity("接地颜色明度 WorldColorIntensity", Range(0,1)) =   1.0
-// 接地颜色明度
+            #include "/gen.cginc"
 
-_LightMask("受光面遮罩 LightMask", Range(0,1)) =   0.50
-// 受光面遮罩
+            ///////////////////////////////////////////////////////////////////////////
+            VertexOutput vert(VertexInput input)
+            {
+                VertexOutput output = (VertexOutput)0;
+                output.Pos = vertexContext.ClipPosition;
+                return output;
+            };
+            ///////////////////////////////////////////////////////////////////////////
+            FragOutput frag(VertexOutput input)
+            {
+                SETUP_CONSTANTS();
+                FragmentContext fragmentContext = GetDefaultFragmentContext();
+                ShadingContext shadingContext = GetDefaultShadingContext();
+                RETURN_FINAL_PIXEL_OUTPUT(fragmentContext, shadingContext);
+            };
+            ///////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////
+            ENDCG
+        }
 
-_U_Scale("基础贴图U方向缩放 U_Scale", Range(0,1)) =   1.0
-// 基础贴图U方向缩放
+        Pass
+        {
+            Tags
+            {
+                "LightMode" = "ForwardBase"
+            }
+            
 
-_WorldColorLerp("接地颜色透明度0-1 WorldColorLerp", Range(0,1)) =   1.0
-// 接地颜色透明度0-1
+            CGPROGRAM
+            #pragma target 3.0
+            ENDCG
+        }
+    }
+
+    SubShader
+    {
+        Tags
+        {
+            "Queue" = "Geometry"
+            "RenderType" = "Opaque"
+        }
+        
+
+        Pass
+        {
+            Tags
+            {
+                "LightMode" = "ForwardBase"
+            }
+            
+
+            CGPROGRAM
+            #pragma target 3.0
+            ENDCG
+        }
+    }
+
+}
