@@ -1,5 +1,6 @@
-/.venv/
-/_pycache_/
-/backup/
-/bin/
+.venv/
+_pycache_/
+backup/
+bin/
 *.pyc
+/*/.gitignore/

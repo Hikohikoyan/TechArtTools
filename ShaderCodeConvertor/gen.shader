@@ -56,15 +56,21 @@ Shader 'Sample/YourShaderName'
 
             CGPROGRAM
             #pragma target 3.0
+            #pragma enable_d3d11_debug_symbols 
+            #pragma shader_feature _ DEBUG_VIEW_MODE
+            #pragma multi_compile SHADING_QUALITY_HIGH SHADING_QUALITY_MEDIUM SHADING_QUALITY_LOW
+            #pragma multi_compile_fwbase_br 
+            #pragma multi_compile_instancing 
+            #pragma shader_feature_local _ ISOLATE_IBL
             struct VertexInput
             {
-                float4  Vertex  :   POSITION;
-                half3  Normal  :   NORMAL;
+            float4  Vertex : POSITION;
+            half3  Normal : NORMAL;
             };
             struct VertexOutput
             {
-                float4  Pos    : SV_POSITION;
-                float3  WorldPos   : ATTRIB0;
+            float4  Pos : SV_POSITION;
+            float3  WorldPos : ATTRIB0;
             };
             #pragma vertex vert
             #pragma fragment frag
@@ -77,16 +83,18 @@ Shader 'Sample/YourShaderName'
                 VertexOutput output = (VertexOutput)0;
                 output.Pos = vertexContext.ClipPosition;
                 return output;
-            };
-            ///////////////////////////////////////////////////////////////////////////
+                
+            }
             FragOutput frag(VertexOutput input)
             {
                 SETUP_CONSTANTS();
                 FragmentContext fragmentContext = GetDefaultFragmentContext();
                 ShadingContext shadingContext = GetDefaultShadingContext();
+                return output;
+                ShadingContext shadingContext = GetDefaultShadingContext();
                 RETURN_FINAL_PIXEL_OUTPUT(fragmentContext, shadingContext);
-            };
-            ///////////////////////////////////////////////////////////////////////////
+                
+            }
             ///////////////////////////////////////////////////////////////////////////
             ENDCG
         }
@@ -101,6 +109,12 @@ Shader 'Sample/YourShaderName'
 
             CGPROGRAM
             #pragma target 3.0
+            #pragma enable_d3d11_debug_symbols 
+            #pragma shader_feature _ DEBUG_VIEW_MODE
+            #pragma multi_compile SHADING_QUALITY_HIGH SHADING_QUALITY_MEDIUM SHADING_QUALITY_LOW
+            #pragma multi_compile_fwbase_br 
+            #pragma multi_compile_instancing 
+            #pragma shader_feature_local _ ISOLATE_IBL
             ENDCG
         }
     }
@@ -124,6 +138,12 @@ Shader 'Sample/YourShaderName'
 
             CGPROGRAM
             #pragma target 3.0
+            #pragma enable_d3d11_debug_symbols 
+            #pragma shader_feature _ DEBUG_VIEW_MODE
+            #pragma multi_compile SHADING_QUALITY_HIGH SHADING_QUALITY_MEDIUM SHADING_QUALITY_LOW
+            #pragma multi_compile_fwbase_br 
+            #pragma multi_compile_instancing 
+            #pragma shader_feature_local _ ISOLATE_IBL
             ENDCG
         }
     }

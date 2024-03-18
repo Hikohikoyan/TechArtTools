@@ -2309,7 +2309,7 @@ float3 GetMaterialPreviousWorldPositionOffset(FMaterialVertexParameters Paramete
 
 half3 GetMaterialWorldDisplacement(FMaterialTessellationParameters Parameters)
 {
-    return MaterialFloat3(0.00000000,0.00000000,0.00000000);;
+    return 0.00000000.rrr;;
 }
 
 half GetMaterialMaxDisplacement()
@@ -2319,7 +2319,7 @@ return 0.00000;
 
 half GetMaterialTessellationMultiplier(FMaterialTessellationParameters Parameters)
 {
-    return 1.00000000;;
+    return 0.00000000;;
 }
 
 // .rgb:SubsurfaceColor, .a:SSProfileId in 0..1 range
@@ -2437,9 +2437,16 @@ float3 CalculateAnisotropyTangent(FMaterialPixelParameters Parameters, FPixelMat
 void CalcPixelMaterialInputs(in out FMaterialPixelParameters Parameters, in out FPixelMaterialInputs PixelMaterialInputs)
 {
     // Initial calculations (required for Normal)
+    MaterialFloat2 Local0 = (Parameters.TexCoords[0].xy * Material.ScalarExpressions[0].y);
+    MaterialFloat2 Local1 = (Local0 + Material.VectorExpressions[3].rg);
+    MaterialFloat Local2 = MaterialStoreTexCoordScale(Parameters, Local1, 0);
+    MaterialFloat4 Local3 = UnpackNormalMap(Texture2DSample(Material.Texture2D_0, GetMaterialSharedSampler(Material.Texture2D_0Sampler,View.MaterialTextureBilinearWrapedSampler),Local1));
+    MaterialFloat Local4 = MaterialStoreTexSample(Parameters, Local3, 0);
+    MaterialFloat3 Local5 = (Material.VectorExpressions[4].rgb * Local3.rgb);
+    MaterialFloat3 Local6 = (Local5 + Local3.rgb);
 
     // The Normal is a special case as it might have its own expressions and also be used to calculate other inputs, so perform the assignment here
-    PixelMaterialInputs.Normal = MaterialFloat3(0.00000000,0.00000000,1.00000000);
+    PixelMaterialInputs.Normal = Local6;
 
 
     // Note that here MaterialNormal can be in world space or tangent space
@@ -2477,26 +2484,40 @@ void CalcPixelMaterialInputs(in out FMaterialPixelParameters Parameters, in out 
 #endif // !PARTICLE_SPRITE_FACTORY
 
     // Now the rest of the inputs
-    MaterialFloat Local0 = MaterialStoreTexCoordScale(Parameters, Parameters.TexCoords[0].xy, 0);
-    MaterialFloat4 Local1 = ProcessMaterialColorTextureLookup(Texture2DSampleBias(Material.Texture2D_0, Material.Texture2D_0Sampler,Parameters.TexCoords[0].xy,View.MaterialTextureMipBias));
-    MaterialFloat Local2 = MaterialStoreTexSample(Parameters, Local1, 0);
-    MaterialFloat3 Local3 = (Local1.rgb / EyeAdaptationLookup());
-    MaterialFloat3 Local4 = lerp(Local3,Material.VectorExpressions[1].rgb,MaterialFloat(Material.ScalarExpressions[0].x));
+    MaterialFloat3 Local7 = lerp(MaterialFloat3(0.00000000,0.00000000,0.00000000),Material.VectorExpressions[5].rgb,MaterialFloat(Material.ScalarExpressions[1].x));
+    MaterialFloat Local8 = MaterialStoreTexCoordScale(Parameters, Local1, 1);
+    MaterialFloat4 Local9 = ProcessMaterialColorTextureLookup(Texture2DSample(Material.Texture2D_1, GetMaterialSharedSampler(Material.Texture2D_1Sampler,View.MaterialTextureBilinearWrapedSampler),Local1));
+    MaterialFloat Local10 = MaterialStoreTexSample(Parameters, Local9, 1);
+    MaterialFloat3 Local11 = (1.00000000 - Local9.rgb);
+    MaterialFloat3 Local12 = (Local11 * 2.00000000);
+    MaterialFloat3 Local13 = (Local12 * Material.VectorExpressions[8].rgb);
+    MaterialFloat3 Local14 = (1.00000000 - Local13);
+    MaterialFloat3 Local15 = (Local9.rgb * 2.00000000);
+    MaterialFloat3 Local16 = (Local15 * Material.VectorExpressions[7].rgb);
+    MaterialFloat Local17 = ((Local9.rgb.r >= 0.50000000) ? Local14.r : Local16.r);
+    MaterialFloat Local18 = ((Local9.rgb.g >= 0.50000000) ? Local14.g : Local16.g);
+    MaterialFloat Local19 = ((Local9.rgb.b >= 0.50000000) ? Local14.b : Local16.b);
+    MaterialFloat3 Local20 = lerp(Local9.rgb,MaterialFloat3(MaterialFloat2(Local17,Local18),Local19),MaterialFloat(Material.ScalarExpressions[1].y));
+    MaterialFloat Local21 = MaterialStoreTexCoordScale(Parameters, Local1, 4);
+    MaterialFloat4 Local22 = ProcessMaterialColorTextureLookup(Texture2DSample(Material.Texture2D_2, GetMaterialSharedSampler(Material.Texture2D_2Sampler,View.MaterialTextureBilinearWrapedSampler),Local1));
+    MaterialFloat Local23 = MaterialStoreTexSample(Parameters, Local22, 4);
+    MaterialFloat Local24 = (Local22.g.r * Material.ScalarExpressions[1].z);
+    MaterialFloat Local25 = (Local22.r.r * Material.ScalarExpressions[1].w);
 
-    PixelMaterialInputs.EmissiveColor = Local4;
+    PixelMaterialInputs.EmissiveColor = Local7;
     PixelMaterialInputs.Opacity = 1.00000000;
     PixelMaterialInputs.OpacityMask = 1.00000000;
-    PixelMaterialInputs.BaseColor = MaterialFloat3(0.00000000,0.00000000,0.00000000);
-    PixelMaterialInputs.Metallic = 0.00000000;
+    PixelMaterialInputs.BaseColor = Local20;
+    PixelMaterialInputs.Metallic = Local24;
     PixelMaterialInputs.Specular = 0.50000000;
-    PixelMaterialInputs.Roughness = 0.50000000;
+    PixelMaterialInputs.Roughness = Local25;
     PixelMaterialInputs.Anisotropy = 0.00000000;
     PixelMaterialInputs.Tangent = MaterialFloat3(1.00000000,0.00000000,0.00000000);
     PixelMaterialInputs.Subsurface = 0;
     PixelMaterialInputs.AmbientOcclusion = 1.00000000;
     PixelMaterialInputs.Refraction = 0;
     PixelMaterialInputs.PixelDepthOffset = 0.00000000;
-    PixelMaterialInputs.ShadingModel = 0;
+    PixelMaterialInputs.ShadingModel = 1;
 
 
 #if MATERIAL_USES_ANISOTROPY
