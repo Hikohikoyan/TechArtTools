@@ -25,10 +25,7 @@ filter_dict_object = {
     "MaterialGraph":"",
 }
 
-#去掉对应的行
-filter_object = {
 
-}
 # 匹配节点自定义配置
 match_object = {
     "NodeComment",
@@ -61,4 +58,16 @@ match_param = {
     param_end
 }
 
-split_signal = "////"
+split_signal = "////split_signal"
+
+
+hlsl_start = "    "
+hlsl_end = ";"
+#只保留匹配的行
+filter_shader = {
+    "MaterialFloat2 Local",
+    "MaterialFloat Local",
+    "MaterialFloat4 Local",
+    "MaterialFloat3 Local",
+    "PixelMaterialInputs"
+}
