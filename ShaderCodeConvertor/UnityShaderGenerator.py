@@ -126,11 +126,9 @@ def write_cginc(content):
         checkstatus = checkstatus or item["param_name"] == ""
         if item == None or checkstatus:
             continue
-        t = make_param(item["param_type"],item["param_name"],cginc_dict).replace(";","") +";"
-        desc = item["param_desc"]
-        if desc == "":
-            desc = item["param_group"]
-        d = "  " + gls.make_comment(desc )
+        t = make_param(item["param_type"],"_"+item["param_name"],cginc_dict).replace(";","") +";"
+        desc = item["param_group"] + item["param_desc"]
+        d = " "+ gls.make_comment(desc)
         res.append(t + d)
     #print(type(json_str))
     return res # 将新的列表转换成字符串，每行以换行符连接起来
@@ -157,7 +155,7 @@ def write_shader_params(content,num):
         if gls.identify_float_type(val) != "float" and ue_filter.is_key_in_line(name,"Color") and isNotTex:
             type_str = "Color"
             val = "("+val+")"
-        line = "_" + name + '("' + desc + " " + name + '"'+ make_param(type_str,"",shader_dict).replace(";","")
+        line = "_" + name + '("' + desc + "" + name + '"'+ make_param(type_str,"",shader_dict).replace(";","")
         if type_str == "Texture":
             gls.write_log("\nwrite_shader","texture_val " + item["texture_val"])
             line += '"' 
@@ -226,6 +224,7 @@ def gen_cginc_file(input,output):
         func_contents +=  item + ";"
     for item in out['custom']: 
         func_contents += item + ";"
+               
     for item in out['comment']: 
         func_contents += item + ";"
     func_contents = ue_filter.replace_content(func_contents,unity_config.material_to_shaderlab)
