@@ -65,3 +65,12 @@ def clean_value(v):
     #debug
     write_log("\nclean_value","val_type " + val_type + "  return " + s)
     return s
+
+#根据起始和结束的行号读取文件
+def get_line_from_rowindex(file_path, start_line, end_line):
+    with open(file_path, 'r') as f:
+        lines = f.readlines()
+        string = ''
+        for i in range(start_line - 1, end_line):
+            string += lines[i]
+        return string

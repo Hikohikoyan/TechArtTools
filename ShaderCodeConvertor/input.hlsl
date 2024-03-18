@@ -60,10 +60,10 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-#define NUM_MATERIAL_TEXCOORDS_VERTEX 1
-#define NUM_MATERIAL_TEXCOORDS 1
+#define NUM_MATERIAL_TEXCOORDS_VERTEX 0
+#define NUM_MATERIAL_TEXCOORDS 0
 #define NUM_CUSTOM_VERTEX_INTERPOLATORS 0
-#define NUM_TEX_COORD_INTERPOLATORS 1
+#define NUM_TEX_COORD_INTERPOLATORS 0
 
 // Vertex interpolators offsets definition
 
@@ -296,6 +296,13 @@ struct FMaterialPixelParameters
     /** World space light vector, only valid when rendering a light function. */
     half3 LightVector;
 
+    // BR Begin #BR_0012
+#if MATERIAL_SHADINGMODEL_SINGLELAYERWATER && ES3_1_PROFILE
+    /* SceneDepthWithoutWater is cached for single layer water on ES3_1 */
+    float SceneDepthWithoutWater;
+#endif
+    // BR End
+
     /**
      * Like SV_Position (.xy is pixel position at pixel center, z:DeviceZ, .w:SceneDepth)
      * using shader generated value SV_POSITION
@@ -469,6 +476,7 @@ struct FMaterialVertexParameters
     float4 PerInstanceParams;
     uint InstanceId;
     uint InstanceOffset;
+    float4 CustomColor;/* (#BR_0003) (jarlmeng) */
 
 #elif IS_MESHPARTICLE_FACTORY 
     /** Per-particle properties. */
@@ -931,6 +939,34 @@ float GetPerInstanceCustomData(FMaterialVertexParameters Parameters, int Index, 
     return DefaultValue;
 #endif
 }
+
+// BR Begin: ID(#BR_0003) modifier:(jarlmeng)
+float3 GetStylizedWorldColor(FMaterialVertexParameters Parameters)
+{
+#if USE_INSTANCING && ENABLE_INSTANCE_PREFETCH_STYLIZED_COLOR
+    if (Parameters.CustomColor.w > -0.99f) // mask dont use prefetch color
+    {
+        uint2 CustomDataRGBA = Parameters.CustomColor.zw * 32767 + 32767;
+        uint4 RGBA = uint4((CustomDataRGBA.x >> 0) & 0xff, (CustomDataRGBA.x >> 8) & 0xff, (CustomDataRGBA.y >> 0) & 0xff, (CustomDataRGBA.y >> 8) & 0xff);
+        float4 ColorShadow = float4(RGBA) / (255.f).xxxx;
+        return ColorShadow.rgb;    
+    }
+    else
+#endif
+    {
+        float3 WorldPosition = GetWorldPosition(Parameters);
+        float2 Texcoord = (WorldPosition.xy - ResolvedView.StylizedWorldOriginInvSize.xy) * ResolvedView.StylizedWorldOriginInvSize.z * 0.001f;
+        return Texture2DSampleLevel(View.StylizedWorldColorTexture, View.StylizedWorldColorTextureSampler, Texcoord, 0.0f).rgb;        
+    }
+}
+
+float3 GetStylizedWorldColor(FMaterialPixelParameters Parameters)
+{
+    float3 WorldPosition = GetWorldPosition(Parameters);
+    float2 Texcoord = (WorldPosition.xy - ResolvedView.StylizedWorldOriginInvSize.xy) * ResolvedView.StylizedWorldOriginInvSize.z * 0.001f;
+    return Texture2DSampleLevel(View.StylizedWorldColorTexture, View.StylizedWorldColorTextureSampler, Texcoord, 0.0f).rgb;
+}
+// BR End
 
 /** Transforms a vector from tangent space to world space, prescaling by an amount calculated previously */
 MaterialFloat3 TransformTangentVectorToWorld_PreScaled(FMaterialTessellationParameters Parameters, MaterialFloat3 InTangentVector)
@@ -1404,13 +1440,16 @@ float3 MaterialExpressionSkyAtmosphereDistantLightScatteredLuminance(FMaterialPi
     Get the scene depth from the scene below the single layer water surface. This is only valid in the single layer water rendering pass.
     Returns the chosen fallback depth if the material doesn't support reading back the correct depth.
 */
-float MaterialExpressionSceneDepthWithoutWater(float2 ViewportUV, float FallbackDepth)
+float MaterialExpressionSceneDepthWithoutWater(/* #BR_0012 */FMaterialPixelParameters Parameters, /* #BR_0012 End */float2 ViewportUV, float FallbackDepth)
 {
-#if MATERIAL_SHADINGMODEL_SINGLELAYERWATER && !SCENE_TEXTURES_DISABLED && (!SIMPLE_SINGLE_LAYER_WATER || SINGLE_LAYER_WATER_SIMPLE_FORWARD)
-
+#if MATERIAL_SHADINGMODEL_SINGLELAYERWATER && !SCENE_TEXTURES_DISABLED && (!SIMPLE_SINGLE_LAYER_WATER || SINGLE_LAYER_WATER_SIMPLE_FORWARD)/* #BR_0012 */ && !IS_DISTORTION_ACCUMULATE_PIXEL_SHADER/* #BR_0012 End */
     const float2 ClampedViewportUV = clamp(ViewportUV, OpaqueBasePass.SceneWithoutSingleLayerWaterMinMaxUV.xy, OpaqueBasePass.SceneWithoutSingleLayerWaterMinMaxUV.zw);
 
     return OpaqueBasePass.SceneDepthWithoutSingleLayerWaterTexture.SampleLevel(SingleLayerWaterSceneDepthSampler, ClampedViewportUV, 0).x * SINGLE_LAYER_WATER_DEPTH_SCALE;
+// BR Begin #BR_0012
+#elif MATERIAL_SHADINGMODEL_SINGLELAYERWATER && !SCENE_TEXTURES_DISABLED && ES3_1_PROFILE
+    return Parameters.SceneDepthWithoutWater;
+// BR End
 #else
     return FallbackDepth;
 #endif
@@ -1478,6 +1517,27 @@ float3 MaterialExpressionPostSkinOffset(FMaterialVertexParameters Parameters)
     return 0;
 #endif
 }
+
+// BR Begin #BR_0034
+#if ES3_1_PROFILE
+#define ApplySkyLightSHPM View.MobileSkyIrradianceEnvironmentMap
+#else
+#define ApplySkyLightSHPM View.SkyIrradianceEnvironmentMap
+#endif
+
+float3 MaterialExpressionApplySkyLight(FMaterialPixelParameters Parameters, float4 InRespondSH)
+{
+    float SqrtPI = sqrt(PI);
+    float Coefficient0 = (2 * SqrtPI);
+    float Coefficient1 = (3 * SqrtPI) / sqrt(3);
+    float4 RemapCoeff = float4(Coefficient0, -Coefficient1, Coefficient1, -Coefficient1);
+
+    return float3(
+        dot(ApplySkyLightSHPM[0].wyzx * RemapCoeff, InRespondSH),
+        dot(ApplySkyLightSHPM[1].wyzx * RemapCoeff, InRespondSH),
+        dot(ApplySkyLightSHPM[2].wyzx * RemapCoeff, InRespondSH)) * ResolvedView.SkyLightColor.rgb;
+}
+// BR End
 
 /**
  * Utility function to unmirror one coordinate value to the other side
@@ -1880,7 +1940,10 @@ MaterialFloat4 MobileSceneTextureLookup(inout FMaterialPixelParameters Parameter
 
     if (SceneTextureId == PPI_SceneDepth)
     {
-        #if MOBILE_DEFERRED_SHADING
+        // Arashi Begin #AS_053
+        #if MOBILE_DEFERRED_SHADING || MOBILE_FORWARD_SCENEDEPTHAUX
+        //#if MOBILE_DEFERRED_SHADING
+        // Arashi End
             MaterialFloat Depth = ConvertFromDeviceZ(Texture2DSample(MobileSceneTextures.SceneDepthTexture, MobileSceneTextures.SceneDepthTextureSampler, UV).r);
         #else
             MaterialFloat Depth = ConvertFromDeviceZ(Texture2DSample(MobileSceneTextures.SceneColorTexture, MobileSceneTextures.SceneColorTextureSampler, UV).a);
@@ -2073,6 +2136,15 @@ float3 DecodeSceneColorForMaterialNode(float2 ScreenUV)
     return SampledColor;
 #endif
 }
+// BR Begin #BR_0012
+#else
+float3 DecodeSceneColorForMaterialNode(float2 ScreenUV)
+{
+    float3 SceneColor = FetchFramebufferColor(ScreenUV);
+    SceneColor *= (USE_PREEXPOSURE ? View.OneOverPreExposure : 1.0f);
+    return SceneColor;
+}
+// BR End
 
 #endif // SHADING_PATH_DEFERRED
 
@@ -2309,7 +2381,7 @@ float3 GetMaterialPreviousWorldPositionOffset(FMaterialVertexParameters Paramete
 
 half3 GetMaterialWorldDisplacement(FMaterialTessellationParameters Parameters)
 {
-    return 0.00000000.rrr;;
+    return MaterialFloat3(0.00000000,0.00000000,0.00000000);;
 }
 
 half GetMaterialMaxDisplacement()
@@ -2319,7 +2391,7 @@ return 0.00000;
 
 half GetMaterialTessellationMultiplier(FMaterialTessellationParameters Parameters)
 {
-    return 0.00000000;;
+    return 1.00000000;;
 }
 
 // .rgb:SubsurfaceColor, .a:SSProfileId in 0..1 range
@@ -2363,7 +2435,6 @@ half2 GetMaterialRefraction(FPixelMaterialInputs PixelMaterialInputs)
 #if NUM_TEX_COORD_INTERPOLATORS
 void GetMaterialCustomizedUVs(FMaterialVertexParameters Parameters, inout float2 OutTexCoords[NUM_TEX_COORD_INTERPOLATORS])
 {
-    OutTexCoords[0] = Parameters.TexCoords[0].xy;
 
 }
 
@@ -2437,16 +2508,9 @@ float3 CalculateAnisotropyTangent(FMaterialPixelParameters Parameters, FPixelMat
 void CalcPixelMaterialInputs(in out FMaterialPixelParameters Parameters, in out FPixelMaterialInputs PixelMaterialInputs)
 {
     // Initial calculations (required for Normal)
-    MaterialFloat2 Local0 = (Parameters.TexCoords[0].xy * Material.ScalarExpressions[0].y);
-    MaterialFloat2 Local1 = (Local0 + Material.VectorExpressions[3].rg);
-    MaterialFloat Local2 = MaterialStoreTexCoordScale(Parameters, Local1, 0);
-    MaterialFloat4 Local3 = UnpackNormalMap(Texture2DSample(Material.Texture2D_0, GetMaterialSharedSampler(Material.Texture2D_0Sampler,View.MaterialTextureBilinearWrapedSampler),Local1));
-    MaterialFloat Local4 = MaterialStoreTexSample(Parameters, Local3, 0);
-    MaterialFloat3 Local5 = (Material.VectorExpressions[4].rgb * Local3.rgb);
-    MaterialFloat3 Local6 = (Local5 + Local3.rgb);
 
     // The Normal is a special case as it might have its own expressions and also be used to calculate other inputs, so perform the assignment here
-    PixelMaterialInputs.Normal = Local6;
+    PixelMaterialInputs.Normal = MaterialFloat3(0.00000000,0.00000000,1.00000000);
 
 
     // Note that here MaterialNormal can be in world space or tangent space
@@ -2484,40 +2548,22 @@ void CalcPixelMaterialInputs(in out FMaterialPixelParameters Parameters, in out 
 #endif // !PARTICLE_SPRITE_FACTORY
 
     // Now the rest of the inputs
-    MaterialFloat3 Local7 = lerp(MaterialFloat3(0.00000000,0.00000000,0.00000000),Material.VectorExpressions[5].rgb,MaterialFloat(Material.ScalarExpressions[1].x));
-    MaterialFloat Local8 = MaterialStoreTexCoordScale(Parameters, Local1, 1);
-    MaterialFloat4 Local9 = ProcessMaterialColorTextureLookup(Texture2DSample(Material.Texture2D_1, GetMaterialSharedSampler(Material.Texture2D_1Sampler,View.MaterialTextureBilinearWrapedSampler),Local1));
-    MaterialFloat Local10 = MaterialStoreTexSample(Parameters, Local9, 1);
-    MaterialFloat3 Local11 = (1.00000000 - Local9.rgb);
-    MaterialFloat3 Local12 = (Local11 * 2.00000000);
-    MaterialFloat3 Local13 = (Local12 * Material.VectorExpressions[8].rgb);
-    MaterialFloat3 Local14 = (1.00000000 - Local13);
-    MaterialFloat3 Local15 = (Local9.rgb * 2.00000000);
-    MaterialFloat3 Local16 = (Local15 * Material.VectorExpressions[7].rgb);
-    MaterialFloat Local17 = ((Local9.rgb.r >= 0.50000000) ? Local14.r : Local16.r);
-    MaterialFloat Local18 = ((Local9.rgb.g >= 0.50000000) ? Local14.g : Local16.g);
-    MaterialFloat Local19 = ((Local9.rgb.b >= 0.50000000) ? Local14.b : Local16.b);
-    MaterialFloat3 Local20 = lerp(Local9.rgb,MaterialFloat3(MaterialFloat2(Local17,Local18),Local19),MaterialFloat(Material.ScalarExpressions[1].y));
-    MaterialFloat Local21 = MaterialStoreTexCoordScale(Parameters, Local1, 4);
-    MaterialFloat4 Local22 = ProcessMaterialColorTextureLookup(Texture2DSample(Material.Texture2D_2, GetMaterialSharedSampler(Material.Texture2D_2Sampler,View.MaterialTextureBilinearWrapedSampler),Local1));
-    MaterialFloat Local23 = MaterialStoreTexSample(Parameters, Local22, 4);
-    MaterialFloat Local24 = (Local22.g.r * Material.ScalarExpressions[1].z);
-    MaterialFloat Local25 = (Local22.r.r * Material.ScalarExpressions[1].w);
+    MaterialFloat3 Local0 = lerp(MaterialFloat3(0.00000000,0.00000000,0.00000000),Material.VectorExpressions[1].rgb,MaterialFloat(Material.ScalarExpressions[0].x));
 
-    PixelMaterialInputs.EmissiveColor = Local7;
+    PixelMaterialInputs.EmissiveColor = Local0;
     PixelMaterialInputs.Opacity = 1.00000000;
     PixelMaterialInputs.OpacityMask = 1.00000000;
-    PixelMaterialInputs.BaseColor = Local20;
-    PixelMaterialInputs.Metallic = Local24;
+    PixelMaterialInputs.BaseColor = MaterialFloat3(0.00000000,0.00000000,0.00000000);
+    PixelMaterialInputs.Metallic = 0.00000000;
     PixelMaterialInputs.Specular = 0.50000000;
-    PixelMaterialInputs.Roughness = Local25;
+    PixelMaterialInputs.Roughness = 0.50000000;
     PixelMaterialInputs.Anisotropy = 0.00000000;
     PixelMaterialInputs.Tangent = MaterialFloat3(1.00000000,0.00000000,0.00000000);
     PixelMaterialInputs.Subsurface = 0;
     PixelMaterialInputs.AmbientOcclusion = 1.00000000;
     PixelMaterialInputs.Refraction = 0;
     PixelMaterialInputs.PixelDepthOffset = 0.00000000;
-    PixelMaterialInputs.ShadingModel = 1;
+    PixelMaterialInputs.ShadingModel = 0;
 
 
 #if MATERIAL_USES_ANISOTROPY
@@ -2529,7 +2575,7 @@ void CalcPixelMaterialInputs(in out FMaterialPixelParameters Parameters, in out 
 
 // Programmatically set the line number after all the material inputs which have a variable number of line endings
 // This allows shader error line numbers after this point to be the same regardless of which material is being compiled
-#line 2445
+#line 2157
 
 void ClipLODTransition(float2 SvPosition, float DitherFactor)
 {
@@ -2728,7 +2774,19 @@ void CalcMaterialParametersEx(
         Parameters.CameraVector = -WorldRayDirection();
     #endif
 
-    Parameters.LightVector = 0;
+    // BR Begin #BR_0034
+    #if ES3_1_PROFILE
+        Parameters.LightVector = MobileDirectionalLight.DirectionalLightDirectionAndShadowTransition.xyz;
+    #else
+        Parameters.LightVector = ResolvedView.DirectionalLightDirection;
+    #endif
+    // BR End
+
+    // BR Begin #BR_0012
+    #if MATERIAL_SHADINGMODEL_SINGLELAYERWATER && ES3_1_PROFILE
+        float2 BufferUV = SvPositionToBufferUV(SvPosition);
+        Parameters.SceneDepthWithoutWater = ConvertFromDeviceZ(LookupDeviceZ(BufferUV));
+    #endif
 
     Parameters.TwoSidedSign = 1.0f;
 

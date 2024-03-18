@@ -2,38 +2,59 @@ Shader 'Sample/YourShaderName'
 {
     Properties
     {
-        _Normal(" Normal", 2D) = "bump" {}
-        // InputTextures
+        _EnableTextureCompression("EnableTextureCompression", 2D) = "white" {}
+        // Decode
 
-        _NormalIntensity(" NormalIntensity", Range(0,1)) =   1.0
-        // MaterialSettings
+        _EnableTextureCompression("EnableTextureCompression", 2D) = "white" {}
+        // Decode
 
-        _RoughnessIntensity(" RoughnessIntensity", Range(0,1)) =   1.0
-        // MaterialSettings
+        _EnableTextureCompression("EnableTextureCompression", 2D) = "white" {}
+        // Decode
 
-        _Tiling(" Tiling", Range(0,1)) =   1.0
-        // MaterialSettings
+        _NormalTex("NormalTex", 2D) = "bump" {}
+        // 
 
-        _CropY(" CropY", Range(0,1)) =   1.0
-        // MaterialSettings
+        _AlphaMask("AlphaMask", 2D) = "black" {}
+        // 
 
-        _CropX(" CropX", Range(0,1)) =   1.0
-        // MaterialSettings
+        _AO("AO", 2D) = "black" {}
+        // 
 
-        _Metallic(" Metallic", Range(0,1)) =   1.0
-        // MaterialSettings
+        _BaseColorTex("BaseColorTex", 2D) = "white" {}
+        // 
 
-        _DisplacementOffset(" DisplacementOffset", Range(0,1)) =   2.0
-        // MaterialSettings
+        _Color("Color", Range(0,1)) =   1.0
+        // 
 
-        _Albedo(" Albedo", Range(0,1)) = 4  0.50,0.50,0.50,1.0
-        // InputTextures
+        _Metallic("Metallic", Range(0,1)) =   1.0
+        // 
 
-        _ColorOverlay(" ColorOverlay", Range(0,1)) =   1.0
-        // MaterialSettings
+        _MetallicTex("MetallicTex", 2D) = "black" {}
+        // 
 
-        _RMD(" RMD", Range(0,1)) =   True
-        // InputTextures
+        _RoughnessTex("RoughnessTex", 2D) = "black" {}
+        // 
+
+        _EnableTextureCompression("EnableTextureCompression", 2D) = "white" {}
+        // Decode
+
+        _EnableTextureCompression("EnableTextureCompression", 2D) = "white" {}
+        // Decode
+
+        _EnableTextureCompression("EnableTextureCompression", 2D) = "white" {}
+        // Decode
+
+        _EmissiveTex("EmissiveTex", 2D) = "black" {}
+        // 
+
+        _EnableTextureCompression("EnableTextureCompression", 2D) = "white" {}
+        // Decode
+
+        _Roughness_IBL("Roughness_IBL", Range(0,1)) =   0.20
+        // 大理石高光
+
+        _Specular_IBL("Specular_IBL", Range(0,1)) =   0.0150
+        // 大理石高光
 
     }
 
