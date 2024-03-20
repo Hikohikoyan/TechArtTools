@@ -5,3 +5,4 @@ bin/
 *.pyc
 /*/.gitignore/
 common_for_project.txt
+.idea/
