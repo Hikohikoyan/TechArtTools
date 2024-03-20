@@ -1,30 +1,29 @@
 # 过滤参数集中的杂项
 filter_dict_param = {
-    "LinearInterpolate":"lerp",
-    "CustomProperties Pin ":"",
-    "Class=/Script/Engine." :"",
-    "Class=/Script/UnrealEd.MaterialGraphNode":"",
-    '"':"",
-    "MaterialExpression":"",
-    "End Object":"\n",
-    "R=":"DefaultValue = "
+    "LinearInterpolate": "lerp",
+    "CustomProperties Pin ": "",
+    "Class=/Script/Engine.": "",
+    "Class=/Script/UnrealEd.MaterialGraphNode": "",
+    '"': "",
+    "MaterialExpression": "",
+    "End Object": "\n",
+    "R=": "DefaultValue = "
 }
 object_start = '   Begin Object'
 object_end = 'End Object'
 # 过滤节点集的杂项
 filter_dict_object = {
-    "LinearInterpolate":"lerp",
-    "CustomProperties Pin ":"",
-    "Class=/Script/Engine." :"",
-    "Class=/Script/UnrealEd.MaterialGraphNode":"",
-    '"':"",
-    "MaterialExpression":"",
-    "End Object":"\n",
-    "Begin Object ":"Object",
-    "R=":"DefaultValue = ",
-    "MaterialGraph":"",
+    "LinearInterpolate": "lerp",
+    "CustomProperties Pin ": "",
+    "Class=/Script/Engine.": "",
+    "Class=/Script/UnrealEd.MaterialGraphNode": "",
+    '"': "",
+    "MaterialExpression": "",
+    "End Object": "\n",
+    "Begin Object ": "Object",
+    "R=": "DefaultValue = ",
+    "MaterialGraph": "",
 }
-
 
 # 匹配节点自定义配置
 match_object = {
@@ -38,15 +37,14 @@ match_object = {
     'Begin Object Name="MaterialExpression',
     "CustomProperties",
     "MaterialExpression",
-    "A=","B=","R="
+    "A=", "B=", "R="
 }
-
 
 param_start = "ParameterName"
 param_end = "   End Object"
 
 match_param = {
-    #"Begin Object Name=",
+    # "Begin Object Name=",
     "ParameterName",
     "Group",
     "Desc",
@@ -60,10 +58,9 @@ match_param = {
 
 split_signal = "////split_signal"
 
-
 hlsl_start = "    "
 hlsl_end = ";"
-#只保留匹配的行
+# 只保留匹配的行
 filter_shader = {
     "MaterialFloat2 Local",
     "MaterialFloat Local",
