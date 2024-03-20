@@ -6,7 +6,7 @@ import os
 
 log_file = "Log.txt"
 log = ""
-sign = "////"
+sign = "//@@@@"
 
 
 def read_file(input):
@@ -15,14 +15,18 @@ def read_file(input):
         lines = f.readlines()
     for line in lines:
         res += line + "  " + sign
+    res = res.replace(sign,"")
     return res
 
 
 def write_file(input, content):
-    with open(input, "w", encoding="utf-8") as f:
-        f.write(content)
-
-
+    if os.path.isfile(input):
+        with open(input, "w", encoding="utf-8") as f:
+            f.write(content)
+        return True
+    else:
+        print("输入文件路径非法")
+        return False
 def write_log(func, s):
     global log
     log += func + " " + "\n    " + s + ""

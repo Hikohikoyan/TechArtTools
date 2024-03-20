@@ -80,12 +80,12 @@ def clean_result(c):
 
 
 def main():
+    print("当前运行模块为 : UE Graph Filter 过滤材质节点模块 ")
     if not gls.check_status("需要过滤材质节点吗?", "UE Graph Filter::Main"):
         return False
 
     path = ""
     # 定义输入和输出文件路径
-    print("当前运行模块为 : UE Graph Filter 过滤材质节点模块 ")
     input_file = gls.check_input("输入拷贝GraphNode的文件路径", "file")
     output_file = gls.check_input("输入输出文件路径", "file")
 
@@ -110,4 +110,3 @@ def main():
     return True
 
 
-main()

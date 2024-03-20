@@ -117,6 +117,7 @@ def decode_hlsl(input):
 
 # 制作cginc参数 同步ue材质内设置
 def write_cginc(content):
+    gls.write_log("\nwrite_cginc\n",content)
     params = content.split(ue_dict.split_signal)[0].replace("\n", "").replace(" ", "").split("}")
     res = []
     import_par = dict()
@@ -133,8 +134,7 @@ def write_cginc(content):
         import_par.setdefault(item["param_name"],
                               ue_filter.replace_content(item["param_type"], unity_config.mat_shaderlab_param))
         res.append(t + d)
-    # print(type(json_str))
-    print("\n")
+
     hlsl = decode_hlsl(content.split(ue_dict.split_signal)[1])
     local = dict()
     for item in hlsl['custom']:
@@ -187,13 +187,11 @@ def write_shader_params(content, num):
 
 
 def gen_shader_file(input, output):
-    with open(input, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    # 写UnityShader Cginc
-    subshader_num = int(gls.check_input("Shader文件包含几个subshader:", "num"))
+    content = gls.read_file(input)
+    # 写UnityShader
+    subshader_num = gls.check_input("Shader文件包含几个subshader:", "num")
+    subshader_num = int(subshader_num)
     res = write_shader_params(content.split(ue_dict.split_signal)[0], subshader_num)
-
     maincontainer = "Shader 'Sample/YourShaderName'\n{\n"
     prop_str = gls.make_indentation(1) + "Properties\n" + gls.make_indentation(1) + "{\n"
     prop_str += "\n".join(res) + "\n" + gls.make_indentation(1) + "}\n"
@@ -216,14 +214,12 @@ def gen_shader_file(input, output):
     maincontainer += prop_str + "".join(sub) + "\n}"
 
     # 将转换后的内容写入输出文件output_shader
-    with open(output, "w", encoding="utf-8") as f:
-        f.write(maincontainer)
+    gls.write_file(output, maincontainer)
     return
 
 
 def gen_cginc_file(input, output):
-    with open(input, "r", encoding="utf-8") as f:
-        content = f.read()
+    content = gls.read_file(input)
     res = write_cginc(content)
     res = "\n".join(res) + "\n"
     out = decode_hlsl(content.split(ue_dict.split_signal)[1])
@@ -240,8 +236,7 @@ def gen_cginc_file(input, output):
                                   "inout FragmentContext fragmentContext, inout ShadingContext shadingContext, in VertexOutput input",
                                   func_contents)
     # 将转换后的内容写入输出文件output_cginc
-    with open(output, "w", encoding="utf-8") as f:
-        f.write(res)
+    gls.write_file(output,res)
 
 
 # Shader文件包含几个subshader
@@ -253,12 +248,12 @@ def main():
         return False
     # 定义输入和输出文件路径
     print("当前运行模块为 : Unity Shader Generator UnityShader/Cginc生成模块 ")
-    input_file = gls.check_input("输入已过滤好的文件路径 例如 collection_for_unity_shader.txt", "file")
+    input_file = "output.txt"
+    #gls.check_input("输入已过滤好的文件路径 例如 collection_for_unity_shader.txt", "file")
 
     # "collection_for_unity_shader.txt"
 
-    print("输出Cginc文件在 " + unity_config.cginc)
-    print("输出shader文件在 " + unity_config.shader)
+
     output_cginc = unity_config.cginc
     output_shader = unity_config.shader
 
@@ -268,8 +263,10 @@ def main():
     #     content = f.read()
 
     # main
-    result_cginc = gen_cginc_file(input_file, output_cginc)
-    result_shader = gen_shader_file(input_file, output_shader)
+    gen_cginc_file(input_file, output_cginc)
+    print("输出Cginc文件在 " + unity_config.cginc)
+    gen_shader_file(input_file, output_shader)
+    print("输出shader文件在 " + unity_config.shader)
     return True
 
 
