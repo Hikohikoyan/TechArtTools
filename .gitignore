@@ -6,3 +6,13 @@ bin/
 /*/.gitignore/
 common_for_project.txt
 .idea/
+
+
+input.txt
+output.txt
+common_for_project.txt
+collection_for_unity_shader.txt
+Log.txt
+input.hlsl
+gen.cginc
+gen.shader
