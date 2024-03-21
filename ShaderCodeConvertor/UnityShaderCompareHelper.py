@@ -53,18 +53,16 @@ def clean_shader_prop(temp):
 
 def clean_cginc_prop(temp):
     t = []
-    temp = temp.lstrip()
     for str_a in temp.split("\n"):
+        str_a = str_a.lstrip()
         if str_a == "":
             continue
         if str_a.startswith("//"):
             continue
         if str_a.startswith("#"):
-            t.append(str_a)
             continue
-        if str_a.count("//") > 0:
-            str_a = str_a.split("//")[0]
-        str_a = str_a.replace(str_a.split(" ")[0], "")
+        str_a = str_a.split(";")[0]
+        str_a = ""+str_a.replace(str_a.split("_")[0],"")
         t.append(str_a)
     return t
 
@@ -77,6 +75,8 @@ def search_in_arrs(a, b):
     gls.write_log("\nsearch_in_arrs\n AA = ", "".join(a))
     gls.write_log("\nsearch_in_arrs\n BB = ", "".join(b))
     diff = list(set1.difference(set2)) + list(set2.difference(set1))
+    gls.write_log("\nsearch_in_arrs\n Same = ", json.dumps(same))
+    gls.write_log("\nsearch_in_arrs\n Diff = ", json.dumps(diff))
     res = {"same": same, "diff": diff}
     return res
 
@@ -88,12 +88,10 @@ def compare_cginc_prop(a, b):
     temp = search_in_arrs(temp_a, temp_b)
     same = temp["same"]
     diff = temp["diff"]
-    gls.write_log("\ncompare_cginc_prop\n Same = ", json.dumps(same))
-    gls.write_log("\ncompare_cginc_prop\n Diff = ", json.dumps(diff))
-    res = ""
+
     temp = "".join(find_strings(diff, b.split("\n")))
-    res = a + "\n\n" + gls.sign + gls.sign + "New Parameter" + gls.sign + gls.sign + "\n" + temp
-    # gls.write_log("\ncompare_cginc_prop\n new = ", res)
+    res = a + "\n" + gls.sign + gls.sign + "New Parameter" + gls.sign + gls.sign + "\n" + temp
+    gls.write_log("\ncompare_cginc_prop\n new = ", temp)
     return res
 
 
@@ -119,8 +117,6 @@ def compare_shader_prop(a, b):
     temp = search_in_arrs(temp_a, temp_b)
     same = temp["same"]
     diff = temp["diff"]
-    gls.write_log("\ncompare_shader_prop\n Same = ", json.dumps(same))
-    gls.write_log("\ncompare_shader_prop\n Diff = ", json.dumps(diff))
     b_new = "".join(find_strings(diff, b.split("\n")))
     res = a.replace(gls.sign, "\n")
     if len(b_new.split("\n")) > len(b.split("\n")) * 3:
