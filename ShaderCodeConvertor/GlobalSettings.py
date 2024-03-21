@@ -6,7 +6,7 @@ import os
 
 log_file = "Log.txt"
 log = ""
-sign = "//@@@@"
+sign = "////"
 
 
 def read_file(input):
@@ -15,8 +15,14 @@ def read_file(input):
         lines = f.readlines()
     for line in lines:
         res += line + "  " + sign
-    res = res.replace(sign,"")
+    res = res.replace(sign, "")
     return res
+
+
+def get_lines_from_file(input):
+    with open(input, 'r', encoding="utf-8") as f:
+        lines = f.readlines()
+        return lines
 
 
 def write_file(input, content):
@@ -27,6 +33,8 @@ def write_file(input, content):
     else:
         print("输入文件路径非法")
         return False
+
+
 def write_log(func, s):
     global log
     log += func + " " + "\n    " + s + ""
@@ -106,7 +114,7 @@ def clean_str(v):
     return pattern.sub("", v)
 
 
-#print(clean_str(' _BaseColorTex("颜色贴图BaseColo;;rTex", 2D) = "white" {}'))
+# print(clean_str(' _BaseColorTex("颜色贴图BaseColo;;rTex", 2D) = "white" {}'))
 
 def clean_value(v):
     val_type = identify_float_type(v)
@@ -140,14 +148,14 @@ def get_line_from_index(file_path, start_line, end_line):
     if not os.path.isfile(file_path):
         print("输入文件路径非法")
         return ""
-    lines = read_file(file_path)
-    lines = lines.split("\n")
+    lines = get_lines_from_file(file_path)
     print("输入文件总行数为 " + str(len(lines)))
     start_line = int(start_line)
     end_line = int(end_line)
     string = ''
     for i in range(start_line - 1, end_line):
         string += lines[i]
+    #write_log("\nget_line_from_index\n",string)
     return string
 
 

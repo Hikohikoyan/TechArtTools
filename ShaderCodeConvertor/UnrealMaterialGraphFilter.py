@@ -19,7 +19,7 @@ def clean_line(line, key):
 
 
 def is_key_in_line(line, key):
-    return line.find(key) != -1
+    return line.count(key) > 0
 
 
 def replace_content(content, custom_config):
@@ -108,5 +108,3 @@ def main():
     gls.write_file(output_file, result + hlsl)
     # 将转换后的内容写入输出文件
     return True
-
-
