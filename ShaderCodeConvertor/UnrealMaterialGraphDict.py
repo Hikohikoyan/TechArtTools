@@ -56,7 +56,7 @@ match_param = {
     param_end
 }
 
-split_signal = "////split_signal"
+split_signal = "split_signal"
 
 hlsl_start = "    "
 hlsl_end = ";"
