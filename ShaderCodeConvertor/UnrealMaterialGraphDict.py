@@ -13,16 +13,13 @@ object_start = '   Begin Object'
 object_end = 'End Object'
 # 过滤节点集的杂项
 filter_dict_object = {
-    "LinearInterpolate": "lerp",
-    "CustomProperties Pin ": "",
-    "Class=/Script/Engine.": "",
-    "Class=/Script/UnrealEd.MaterialGraphNode": "",
-    '"': "",
-    "MaterialExpression": "",
-    "End Object": "\n",
-    "Begin Object ": "Object",
-    "R=": "DefaultValue = ",
-    "MaterialGraph": "",
+    "Begin Object Name=",
+    "ParameterName",
+    "Group",
+    "Desc",
+    "Texture=Texture2D",
+    "SamplerType",
+    "DefaultValue",
 }
 
 # 匹配节点自定义配置
@@ -40,8 +37,8 @@ match_object = {
     "A=", "B=", "R="
 }
 
-param_start = "ParameterName"
-param_end = "   End Object"
+param_start = '   Begin Object Name="MaterialExpression'  # "   Begin Object Name"
+param_end = "   MaterialExpression=MaterialExpression"  # "   End Object"
 
 match_param = {
     # "Begin Object Name=",
@@ -67,4 +64,7 @@ filter_shader = {
     "MaterialFloat4 Local",
     "MaterialFloat3 Local",
     "PixelMaterialInputs"
+}
+bool_dict = {
+    "switch", "bool", "is", "if", "use"
 }

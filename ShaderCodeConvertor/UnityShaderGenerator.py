@@ -1,4 +1,6 @@
 # 导入必要的库
+import json
+
 import GlobalSettings as gls
 import UnrealMaterialGraphDict as ue_dict
 import UnityShaderConfig as unity_config
@@ -35,28 +37,29 @@ def decode_input(item):
         "isBoolean": False,
         "texture_val": ""
     }
-    item = item.replace(",{", "").replace("\n", "").replace("{", "")
+    item = item.replace(",{", "").replace("{", "")
     for info in item.split(";"):
-
         if len(info.split(":")) < 2:
             continue
         info_type = "".join(info.split(":")[0]).replace("}", "").replace("{", "")
         info_val = info.replace(info_type, "").replace(":", "").replace('"', "")
         # #debug
-        # gls.write_log("" ,"info_type:  " + info_type)
-        # gls.write_log("" ,"info_val:  " + info_val)
-
+        if (info_type.lstrip().startswith("Name")):
+            if ue_filter.is_key_in_line(info_val, "Parameter"):
+                info_val = info_val.split("_")[0].replace("Parameter","")
+                info_val = ue_filter.replace_content(info_val, unity_config.match_type)
+                pack["param_type"] = info_val
         # get ParameterName
         if (ue_filter.is_key_in_line(info_type, "ParameterName")):
             pack["param_name"] = info_val
             if ue_filter.is_key_in_line(info_val, "Tex"):
                 pack["isTexture"] = True
+            if ue_filter.is_key_in_line(info_val, "Use"):
+                pack["isBoolean"] = True
 
         # get ParameterGroup
         if (ue_filter.is_key_in_line(info_type, "Group")):
             pack["param_group"] = info_val
-            if ue_filter.is_key_in_line(info_val, "贴图"):
-                pack["isTexture"] = True
 
         # get ParameterDesc
         if (ue_filter.is_key_in_line(info_type, "Desc")):
@@ -65,21 +68,25 @@ def decode_input(item):
         # get ParameterValue
         if (ue_filter.is_key_in_line(info_type, "DefaultValue")):
             pack["param_val"] = gls.clean_value(info_val)
-
+        if ue_filter.is_key_in_line(info_val, "True") or ue_filter.is_key_in_line(info_val, "False"):
+            pack["isBoolean"] = True
         # get TextureValue
         if (ue_filter.is_key_in_line(info_type, "SamplerType")):
             pack["isTexture"] = True
             pack["texture_val"] = info_val
+        # debug
+        # gls.write_log("" ,"param_val:" +pack["param_val"])
+        # gls.write_log("" ,"param_name:" +pack["param_name"])
 
-    # debug
-    # gls.write_log("" ,"param_val:" +pack["param_val"])
-    # gls.write_log("" ,"param_name:" +pack["param_name"])
-    # gls.write_log("decode_input" ,"param_desc:" +pack["param_desc"])
     if pack["isTexture"]:
         # 贴图参数
         pack["param_type"] = "Texture"
+    elif pack["isBoolean"]:
+        pack["param_type"] = "boolean"
     else:
-        pack["param_type"] = gls.identify_float_type(pack["param_val"])
+        if pack["param_type"] == "":
+            pack["param_type"] = gls.identify_float_type(pack["param_val"])
+
     return pack
 
 
@@ -117,7 +124,7 @@ def decode_hlsl(input):
 
 # 制作cginc参数 同步ue材质内设置
 def write_cginc(content):
-    gls.write_log("\nwrite_cginc\n",content)
+    # gls.write_log("\nwrite_cginc\n", content)
     params = content.split(ue_dict.split_signal)[0].replace("\n", "").replace(" ", "").split("}")
     res = []
     import_par = dict()
@@ -129,10 +136,13 @@ def write_cginc(content):
         if item == None or checkstatus:
             continue
         t = make_param(item["param_type"], "_" + item["param_name"], cginc_dict).replace(";", "") + ";"
+        if item["isBoolean"]:
+            t = "#ifdef "+ item["param_name"].upper() + "\n#endif "
         desc = item["param_group"] + item["param_desc"]
         d = " " + gls.make_comment(desc)
         import_par.setdefault(item["param_name"],
-                              ue_filter.replace_content(item["param_type"], unity_config.mat_shaderlab_param))
+                          ue_filter.replace_content(item["param_type"],
+                          unity_config.mat_shaderlab_param))
         res.append(t + d)
 
     hlsl = decode_hlsl(content.split(ue_dict.split_signal)[1])
@@ -141,7 +151,7 @@ def write_cginc(content):
         par = item.split("=")[0].split(" ")
         if len(par) > 2:
             local.setdefault(par[1], ue_filter.replace_content(par[0], unity_config.mat_shaderlab_param))
-    print(gls.match_keys(import_par, local))
+
     return res  # 将新的列表转换成字符串，每行以换行符连接起来
 
 
@@ -166,7 +176,7 @@ def write_shader_params(content, num):
             type_str = "Color"
             val = "(" + val + ")"
         line = "_" + name + '("' + desc + "" + name + '"' + make_param(type_str, "", shader_dict).replace(";", "")
-        if type_str == "Texture":
+        if item["isTexture"]:
             # gls.write_log("\nwrite_shader","texture_val " + item["texture_val"])
             line += '"'
             if (item["texture_val"] != ""):
@@ -178,6 +188,8 @@ def write_shader_params(content, num):
             range_str = "Range(0," + val + ")"
             line.replace(" Range(0,1)", range_str)
             line += " " + val
+        if item["isBoolean"]:
+            line = "[Toggle("+ name.upper() +")]" + line.replace("True","1 //True").replace("False","0 //False")
         res.append(gls.make_indentation(2) + line)
         # gls.write_log("\nwrite_shader",line)
         if desc == "":
@@ -236,7 +248,7 @@ def gen_cginc_file(input, output):
                                   "inout FragmentContext fragmentContext, inout ShadingContext shadingContext, in VertexOutput input",
                                   func_contents)
     # 将转换后的内容写入输出文件output_cginc
-    gls.write_file(output,res)
+    gls.write_file(output, res)
 
 
 # Shader文件包含几个subshader
@@ -249,10 +261,9 @@ def main():
     # 定义输入和输出文件路径
     print("当前运行模块为 : Unity Shader Generator UnityShader/Cginc生成模块 ")
     input_file = "output.txt"
-    #gls.check_input("输入已过滤好的文件路径 例如 collection_for_unity_shader.txt", "file")
+    # gls.check_input("输入已过滤好的文件路径 例如 collection_for_unity_shader.txt", "file")
 
     # "collection_for_unity_shader.txt"
-
 
     output_cginc = unity_config.cginc
     output_shader = unity_config.shader

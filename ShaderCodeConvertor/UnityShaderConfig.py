@@ -3,6 +3,13 @@ import GlobalSettings as gls
 cginc = "gen.cginc"
 shader = "gen.shader"
 
+match_type = {
+    "TextureSample2D":"Texture",
+    "Vector":"float4",
+    "StaticSwitch":"boolean",
+    "Scalar":"float"
+}
+
 # 定义hlsl shader code和cgsl的对应关系
 cginc_dict = {
     "Texture": "sampler2D",
@@ -10,6 +17,7 @@ cginc_dict = {
     "int": "half",
     "float3": "half3",
     "float4": "half4",
+    "boolean": "#ifdef\n#endif \n //"
 }
 
 shader_dict = {
@@ -18,7 +26,8 @@ shader_dict = {
     "float": ", Range(0,1)) = ",
     "float3": ", Vector) =",
     "float4": ", Vector) =",
-    "Color": ", Color) = (1,1,1)"
+    "Color": ", Color) = (1,1,1)",
+    "boolean": ", Float) = "
 }
 
 # 定义生成的hlsl shaderlab的对应关系
@@ -29,7 +38,8 @@ mat_shaderlab_param = {
     "MaterialFloat3": "half3",
     "Texture": "sampler2D",
     "int": "half",
-    "float": "half"
+    "float": "half",
+    "boolean":"#ifdef\n#endif   //"
 }
 material_to_shaderlab = {
     "MaterialFloat2": "float2",

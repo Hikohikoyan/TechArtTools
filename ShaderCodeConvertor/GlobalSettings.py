@@ -37,7 +37,7 @@ def write_file(input, content):
 
 def write_log(func, s):
     global log
-    log += func + " " + "\n    " + s + ""
+    log += func + " " + "\n    " + s
     # 输出Debug Log
     log_file = "Log.txt"
     write_file(log_file, log)

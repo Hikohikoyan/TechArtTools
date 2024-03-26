@@ -66,11 +66,10 @@ def remove_lines(content, custom_config):
     lines = content.split("\n")  # 将字符串按行分割成一个列表
     new_lines = []
     for line in lines:
-        line = line.lstrip()  # 去掉行首空格
+        tl = line.lstrip()  # 去掉行首空格
         for key in custom_config:
-            if is_key_in_line(line, key):
-                continue
-            new_lines.append(line)
+            if not tl.startswith(key):
+                new_lines.append(tl)
     return "\n".join(new_lines)  # 将新的列表转换成字符串，每行以换行符连接起来
 
 
@@ -79,26 +78,39 @@ def clean_result(c):
     return c
 
 
+def filter_input_nodes(content):
+    # content.replace("Begin Object", "{\n").replace("End Object", "},\n")
+    c = match_by_config(content, ue_dict.filter_dict_object)
+    c = "{" + c.replace("Begin Object ", "},{\n") +"}"
+    c = replace_content(c,ue_dict.filter_dict_param)
+    res = ""
+    for line in c.split("\n"):
+        res += line + ";"
+    return res.replace("=",":")
+
+
 def main():
     print("当前运行模块为 : UE Graph Filter 过滤材质节点模块 ")
     if not gls.check_status("需要过滤材质节点吗?", "UE Graph Filter::Main"):
-        return False
-
-    path = ""
+        path = ""
     # 定义输入和输出文件路径
-    input_file = gls.check_input("输入拷贝GraphNode的文件路径", "file")
-    output_file = gls.check_input("输入输出文件路径", "file")
+    input_file = "input.txt"
+    # gls.check_input("输入拷贝GraphNode的文件路径", "file")
+    output_file = "output.txt"
+    # gls.check_input("输入输出文件路径", "file")
 
     content = gls.read_file(input_file)
     content = content.replace(gls.sign, "\n")
 
     # Get Parameters Info
-    result = "{" + replace_by_config(content, ue_dict.match_param, ue_dict.param_start, ue_dict.param_end) + "}"
-    result = clean_result(replace_content(result, ue_dict.filter_dict_param))
+    # result = "{" + replace_by_config(content, ue_dict.match_param, ue_dict.param_start, ue_dict.param_end) + "}"
+    result = filter_input_nodes(content)
+    # result = clean_result(replace_content(result, ue_dict.filter_dict_param))
+    # result = result.replace("ParameterName", "},{\nParameterName")
+    result = result + "\n" + ue_dict.split_signal + "\n"
 
-    result += "\n" + ue_dict.split_signal + "\n"
-
-    input_hlsl = gls.check_input("输入拷贝的HLSL文件路径", "file")
+    input_hlsl = "input.hlsl"
+    # gls.check_input("输入拷贝的HLSL文件路径", "file")
     hlsl_code = gls.read_file(input_hlsl)
     hlsl_code = hlsl_code.replace(gls.sign, "\n")
 
@@ -108,3 +120,6 @@ def main():
     gls.write_file(output_file, result + hlsl)
     # 将转换后的内容写入输出文件
     return True
+
+
+main()
