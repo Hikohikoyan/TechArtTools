@@ -35,9 +35,10 @@ def decode_input(item):
         "isTexture": False,
         "isColor": False,
         "isBoolean": False,
-        "texture_val": ""
+        "texture_val": "",
+        "isParam": False
     }
-    item = item.replace(",{", "").replace("{", "")
+    item = item.replace(",{", "").replace("{;", "")
     for info in item.split(";"):
         if len(info.split(":")) < 2:
             continue
@@ -45,8 +46,9 @@ def decode_input(item):
         info_val = info.replace(info_type, "").replace(":", "").replace('"', "")
         # #debug
         if (info_type.lstrip().startswith("Name")):
-            if ue_filter.is_key_in_line(info_val, "Parameter"):
-                info_val = info_val.split("_")[0].replace("Parameter","")
+            if ue_filter.is_key_in_line(info_val, "Parameter_"):
+                pack["isParam"] = True
+                info_val = info_val.split("_")[0].replace("Parameter", "")
                 info_val = ue_filter.replace_content(info_val, unity_config.match_type)
                 pack["param_type"] = info_val
         # get ParameterName
@@ -54,8 +56,10 @@ def decode_input(item):
             pack["param_name"] = info_val
             if ue_filter.is_key_in_line(info_val, "Tex"):
                 pack["isTexture"] = True
+                pack["isParam"] = True
             if ue_filter.is_key_in_line(info_val, "Use"):
                 pack["isBoolean"] = True
+                pack["isParam"] = True
 
         # get ParameterGroup
         if (ue_filter.is_key_in_line(info_type, "Group")):
@@ -73,6 +77,7 @@ def decode_input(item):
         # get TextureValue
         if (ue_filter.is_key_in_line(info_type, "SamplerType")):
             pack["isTexture"] = True
+            pack["isParam"] = True
             pack["texture_val"] = info_val
         # debug
         # gls.write_log("" ,"param_val:" +pack["param_val"])
@@ -131,18 +136,19 @@ def write_cginc(content):
     for info in params:
         item = decode_input(info)
         isNotTex = not item["isTexture"]
-        checkstatus = isNotTex and item["param_val"] == ""
-        checkstatus = checkstatus or item["param_name"] == ""
+        checkstatus = not item["isParam"]
+        # isNotTex and item["param_val"] == ""
+        # checkstatus = checkstatus or item["param_name"] == ""
         if item == None or checkstatus:
             continue
         t = make_param(item["param_type"], "_" + item["param_name"], cginc_dict).replace(";", "") + ";"
         if item["isBoolean"]:
-            t = "#ifdef "+ item["param_name"].upper() + "\n#endif "
+            t = "#ifdef " + item["param_name"].upper() + "\n#endif "
         desc = item["param_group"] + item["param_desc"]
         d = " " + gls.make_comment(desc)
         import_par.setdefault(item["param_name"],
-                          ue_filter.replace_content(item["param_type"],
-                          unity_config.mat_shaderlab_param))
+                              ue_filter.replace_content(item["param_type"],
+                                                        unity_config.mat_shaderlab_param))
         res.append(t + d)
 
     hlsl = decode_hlsl(content.split(ue_dict.split_signal)[1])
@@ -162,8 +168,10 @@ def write_shader_params(content, num):
     for info in params:
         item = decode_input(info)
         isNotTex = not item["isTexture"]
-        checkstatus = isNotTex and item["param_val"] == ""
-        checkstatus = checkstatus or item["param_name"] == ""
+        checkstatus = not item["isParam"]
+        # isNotTex and item["param_val"] == ""
+        # checkstatus = checkstatus or item["param_type"] == ""
+        gls.write_log("write_shader_params ", json.dumps(item))
         if item == None or checkstatus:
             continue
         name = item["param_name"]
@@ -189,7 +197,7 @@ def write_shader_params(content, num):
             line.replace(" Range(0,1)", range_str)
             line += " " + val
         if item["isBoolean"]:
-            line = "[Toggle("+ name.upper() +")]" + line.replace("True","1 //True").replace("False","0 //False")
+            line = "[Toggle(" + name.upper() + ")]" + line.replace("True", "1 //True").replace("False", "0 //False")
         res.append(gls.make_indentation(2) + line)
         # gls.write_log("\nwrite_shader",line)
         if desc == "":
