@@ -1,1 +1,241 @@
-/////common_for_project.txt/////
+half _BakedAO;
+half _AOInten;
+half _Saturation;
+
+half _Tiled_U;
+half _Tiled_V;
+// half _UVTile;
+// half _DetailUV;   // 没用DetailNormal
+
+sampler2D _BaseColorTex;
+sampler2D _NormalTex;
+sampler2D _RoughnessTex;
+sampler2D _AOTex;
+
+half4 _TintColor;
+
+#ifdef USE_EMISSIVE
+sampler2D _EmissiveTex;
+half3 _EmissiveColor;
+#endif
+
+#ifdef BR_TREEROOT_WIND
+    half _Trunk_RootMask;
+    half _Trunk_Random;
+    half _Trunk_WaveSpeed;
+    half _Trunk_WaveStrength;
+    half3 _WindDirection;
+    half _WindMultiplier;
+#endif
+
+// Decoder
+sampler2D _LinearRGBA;
+half _RoughnessCurve;
+half _RoughnessRate;
+half4 _AlbedoBias;
+half4 _AlbedoScale;
+half4 _Decode1;
+half4 _Decode1Bias;
+half4 _Decode2;
+half4 _Decode2Bias;
+half4 _Decode3;
+half4 _Decode3Bias;
+half4 _Decode4;
+half4 _SwizzleParameter;
+
+///////////////////////////// @hikohuang 接地过渡 细节法线 青苔
+
+half _DetailNormalIntensity;// 是否叠加细节法线
+half _Use_BlendGround;// 是否使用接地过渡0不启用1启用
+half _Use_Moss;// 是否使用 青苔
+
+half _BottomMaskSmooth; // 05_接地过渡接地过渡的边缘软硬
+half _BottomMaskBias; // 05_接地过渡接地过渡的高度
+half _BottomMaskInten; // 05_接地过渡接地过渡的高度
+
+half _DetailUV; // Detail细节UV大小
+sampler2D _NormalDetailTex; // Detail细节法线贴图
+half _Detail_V_Scale; // Detail细节法线贴图V方向缩放
+half _WorldColorIntensity; // 05_接地过渡接地颜色明度
+
+
+sampler2D _GrassNoiseTex; // 06_青苔
+half _MossMaskInten; // 06_青苔青苔覆盖强度
+half _MossMaskSmooth; // 06_青苔青苔的边缘软硬
+
+half _MossUV_Tiling; // 07_青苔UV
+half _MossV_Scale; // 07_青苔UV
+half _MossU_Scale; // 07_青苔UV
+
+half _MossHue; // 06_青苔青苔色相偏移在黄绿色色环上
+half _MossSaturation; // 06_青苔青苔饱和度
+half _MossV; // 06_青苔青苔明度
+
+///////////////////////////// @hikohuang 接地过渡 细节法线 青苔
+
+        _DetailNormalIntensity("是否叠加细节法线DetailNormalIntensity", Range(0,2)) =   1
+        // 是否叠加细节法线
+        _DetailUV("细节UV大小DetailUV", Range(0,10)) =   6.0
+        // 细节UV大小
+        _NormalDetailTex("细节法线贴图NormalDetailTex", 2D) = "bump" {}
+        // 细节法线贴图
+        _Detail_V_Scale("细节法线贴图V方向缩放Detail_V_Scale", Range(0,1)) =   0.50
+        // 细节法线贴图V方向缩放
+
+		[Space(10)][Header(BottomMask)][Space(10)]
+		_Use_BlendGround("是否使用接地过渡 Use_BlendGround", Range(0,1)) =   1
+        // 是否使用接地过渡0不启用1启用
+ 		_BottomMaskSmooth("接地过渡的边缘软硬BottomMaskSmooth", Range(0,1)) =   1
+        // 接地过渡的边缘软硬
+        _BottomMaskBias("接地过渡的高度BottomMaskBias", Range(0,1)) =   0
+        // 接地过渡的高度
+        _BottomMaskInten("接地过渡的高度BottomMaskInten",Range(0,5)) =   2
+        // 接地过渡的高度
+        _WorldColorIntensity("接地颜色明度WorldColorIntensity", Range(0,1)) =   1.0
+        // 接地颜色明度
+
+		_Use_Moss("Use_Moss", Range(0,1)) =   0 //True
+        // 06_青苔
+
+        _MossMaskInten("青苔覆盖强度MossMaskInten", Range(0,1)) =   10.0
+        // 青苔覆盖强度
+        _GrassNoiseTex("GrassNoiseTex", 2D) = "black" {}
+        // 06_青苔
+        _MossMaskSmooth("青苔的边缘软硬MossMaskSmooth", Range(0,1)) =   0.20
+        // 青苔的边缘软硬
+
+        _MossUV_Tiling("MossUV_Tiling", Range(0,1)) =   0.50
+        // 07_青苔UV
+        _MossV_Scale("MossV_Scale", Range(0,1)) =   0.50
+        // 07_青苔UV
+        _MossU_Scale("MossU_Scale", Range(0,1)) =   0.50
+        // 07_青苔UV
+
+        _MossHue("青苔色相偏移在黄绿色色环上MossHue", Range(0,1)) =   0.50
+        // 青苔色相偏移在黄绿色色环上
+        _MossSaturation("青苔饱和度MossSaturation", Range(0,1)) =   0.50
+        // 青苔饱和度
+        _MossV("青苔明度MossV", Range(0,1)) =   0.080
+        // 青苔明度
+
+
+
+//new
+half _BottomMaskSmooth; // 05_接地过渡接地过渡的边缘软硬
+half _BottomMaskInten; // 05_接地过渡接地过渡的高度
+half _MossMaskInten; // 06_青苔青苔覆盖强度
+sampler2D _GrassNoiseTex; // 06_青苔
+half _MossMaskSmooth; // 06_青苔青苔的边缘软硬
+half _MossUV_Tiling; // 07_青苔UV
+half _MossV_Scale; // 07_青苔UV
+half _MossU_Scale; // 07_青苔UV
+half _DetailUV; // Detail细节UV大小
+sampler2D _NormalDetailTex; // Detail细节法线贴图
+half _Detail_V_Scale; // Detail细节法线贴图V方向缩放
+half4 _TintColor; // 基础参数BaseParams颜色
+half _WorldColorIntensity; // 05_接地过渡接地过渡明度
+#ifdef USE_BLENDGROUND
+#endif  // 05_接地过渡是否使用接地过渡0不启用1启用
+half _DetailNormalIntensity; // Detail是否叠加细节法线
+half _BottomMaskBias; // 05_接地过渡接地过渡的高度
+#ifdef USE_MOSS
+#endif  // 06_青苔是否使用青苔0不启用1启用
+half4 _MossColor; // 06_青苔青苔颜色叠加
+half _MossLighten; // 06_青苔青苔明度
+half _MossColorLerp; // 06_青苔青苔颜色叠加
+half _MossMaskBias; // 06_青苔青苔覆盖高度
+#ifdef USE_MOSS
+#endif  // 06_青苔是否使用青苔0不启用1启用
+half _MossNormal; // 06_青苔
+half4 _MixColor; // 07_杂色杂色颜色叠加
+#ifdef USEMIXCOLOR
+#endif  // 07_杂色杂色颜色叠加
+half _DebugMask; // 01_Debug
+half _MossDarken; // 06_青苔青苔暗边明度
+#ifdef USE_MOSS
+#endif  // 06_青苔是否使用青苔0不启用1启用
+
+
+  _BottomMaskSmooth("接地过渡的边缘软硬BottomMaskSmooth", Range(0,1)) =   0.50
+        // 接地过渡的边缘软硬
+
+        _BottomMaskInten("接地过渡的高度BottomMaskInten", Range(0,1)) =   2.0
+        // 接地过渡的高度
+
+        _MossMaskInten("青苔覆盖强度MossMaskInten", Range(0,1)) =   1.0
+        // 青苔覆盖强度
+
+        _GrassNoiseTex("GrassNoiseTex", 2D) = "black" {}
+        // 06_青苔
+
+        _MossMaskSmooth("青苔的边缘软硬MossMaskSmooth", Range(0,1)) =   0.950
+        // 青苔的边缘软硬
+
+        _MossUV_Tiling("MossUV_Tiling", Range(0,1)) =   1.0
+        // 07_青苔UV
+
+        _MossV_Scale("MossV_Scale", Range(0,1)) =   0.50
+        // 07_青苔UV
+
+        _MossU_Scale("MossU_Scale", Range(0,1)) =   0.50
+        // 07_青苔UV
+
+        _DetailUV("细节UV大小DetailUV", Range(0,1)) =   6.0
+        // 细节UV大小
+
+        _NormalDetailTex("细节法线贴图NormalDetailTex", 2D) = "bump" {}
+        // 细节法线贴图
+
+        _Detail_V_Scale("细节法线贴图V方向缩放Detail_V_Scale", Range(0,1)) =   0.50
+        // 细节法线贴图V方向缩放
+
+        _TintColor("颜色TintColor", Color) = (1,1,1)
+        // 颜色
+
+        _WorldColorIntensity("接地过渡明度WorldColorIntensity", Range(0,1)) =   1.0
+        // 接地过渡明度
+
+        [Toggle(USE_BLENDGROUND)]_Use_BlendGround("是否使用接地过渡0不启用1启用Use_BlendGround", Float) =   1.0
+        // 是否使用接地过渡0不启用1启用
+
+        _DetailNormalIntensity("是否叠加细节法线DetailNormalIntensity", Range(0,1)) =   0.50
+        // 是否叠加细节法线
+
+        _BottomMaskBias("接地过渡的高度BottomMaskBias", Range(0,1)) =   0.250
+        // 接地过渡的高度
+
+        [Toggle(USE_MOSS)]_Use_Moss("是否使用青苔0不启用1启用Use_Moss", Float) =
+        // 是否使用青苔0不启用1启用
+
+        _MossColor("青苔颜色叠加MossColor", Color) = (1,1,1)
+        // 青苔颜色叠加
+
+        _MossLighten("青苔明度MossLighten", Range(0,1)) =   1.0
+        // 青苔明度
+
+        _MossColorLerp("青苔颜色叠加MossColorLerp", Color) = (1,1,1)
+        // 青苔颜色叠加
+
+        _MossMaskBias("青苔覆盖高度MossMaskBias", Range(0,1)) =   0.250
+        // 青苔覆盖高度
+
+        [Toggle(USE_MOSS)]_Use_Moss("是否使用青苔0不启用1启用Use_Moss", Float) =
+        // 是否使用青苔0不启用1启用
+
+        _MossNormal("MossNormal", Range(0,1)) =
+        // 06_青苔
+
+        _MixColor("杂色颜色叠加MixColor", Color) = (1,1,1)
+        // 杂色颜色叠加
+
+        [Toggle(USEMIXCOLOR)]_UseMixColor("杂色颜色叠加UseMixColor", Color) = (1,1,1)
+        // 杂色颜色叠加
+
+        _DebugMask("DebugMask", Range(0,1)) =
+        // 01_Debug
+
+        _MossDarken("青苔暗边明度MossDarken", Range(0,1)) =   0.50
+        // 青苔暗边明度
+
+        [Toggle(USE_MOSS)]_Use_Moss("是否使用青苔0不启用1启用Use_Moss", Float) =
+        // 是否使用青苔0不启用1启用
