@@ -8,6 +8,22 @@ log_file = "Log.txt"
 log = ""
 sign = "////"
 
+def convertRGB():
+    n = input("请输入RGB值")
+    n = n.replace("(","")
+    n = n.replace(")","")
+    new_str = n.split(",")
+    res =""
+    i = 0
+    for s in new_str:
+        i +=1
+        res += str('{:.2f}'.format(int(s)/255))
+        if i != len(new_str):
+            res += ","
+    print("("+res +")")
+
+#convertRGB()
+
 
 def read_file(input):
     res = ""
@@ -186,3 +202,30 @@ def match_keys(mapping_a: Dict[str, str], mapping_b: Dict[str, str]) -> Dict[str
 def remove_inner_string(s, start_str, end_str):
     pattern = re.compile(re.escape(start_str) + ".*?" + re.escape(end_str))
     return pattern.sub("", s)
+
+
+def merge_single_to_pack():
+    text = read_file("input.txt")#input("输入文件"))
+    txts = text.split(";")
+    single = []
+    ref = []
+    log = ""
+    for line in txts:
+        line = line.lstrip()
+        isHalf = line.startswith("half ")
+        isFloat = line.startswith("float ")
+        if isHalf | isFloat:
+            val = line.split("=")
+            attr = val[0].split(" ")
+            if len(attr)<=0:
+                print("no attr")
+                continue
+            single.append({"name":attr[1].replace(" ",""),"val":val[1].replace(";","")})
+            log += "\n" + attr[1].replace(" ","") + " : " + val[1].replace(";","")
+            text = text.replace(line+";","")
+    for item in single:
+        text = text.replace(item["name"],item["val"]);
+    print(log)
+    print(text)
+
+merge_single_to_pack()
