@@ -223,9 +223,65 @@ def merge_single_to_pack():
             single.append({"name":attr[1].replace(" ",""),"val":val[1].replace(";","")})
             log += "\n" + attr[1].replace(" ","") + " : " + val[1].replace(";","")
             text = text.replace(line+";","")
+    temp_item = {"name":"none","val":"0"}
+    temp = [temp_item,temp_item,temp_item,temp_item]
+    count = 0
+    str_comment = ""
+
     for item in single:
-        text = text.replace(item["name"],item["val"]);
+        # log += "\n"+str(count) +  item["name"] + item["val"]
+        if count == 4 :
+            ref.append({"pack":temp,"comment":str_comment})
+            print("append")
+            count = 0
+            str_comment = ""
+            temp_item = {"name": "none", "val": "0"}
+            temp = [temp_item,temp_item,temp_item,temp_item]
+        temp[count] = item
+        str_comment += item["name"] +"|"
+        count += 1
+
+        if count == len(single):
+            ref.append({"pack": temp, "comment": str_comment})
+            count = 0
+            str_comment = ""
+            temp_item = {"name": "none", "val": "0"}
+            temp = [temp_item, temp_item, temp_item, temp_item]
+
+    pack_prefix = input("合并为Half4的prefix  :")
+    pack_count = 0
+
+    for item in ref:
+        attr_x_name = item["pack"][0]["name"]
+        attr_x_val = item["pack"][0]["val"]
+        attr_y_name = item["pack"][1]["name"]
+        attr_y_val = item["pack"][1]["val"]
+        attr_z_name = "none"
+        attr_z_val = "0"
+        attr_w_name = "none"
+        attr_w_val = "0"
+        if len(single)>2:
+            attr_z_name = item["pack"][2]["name"]
+            attr_z_val = item["pack"][2]["val"]
+        if len(single)>3:
+            attr_w_name = item["pack"][3]["name"]
+            attr_w_val = item["pack"][3]["val"]
+        new_name = pack_prefix +"_" + str(pack_count)
+        new_attr = "half4 " + new_name +" ="
+        new_attr += "half4( " +attr_x_val +" , "
+        new_attr += attr_y_val +" , "
+        new_attr += attr_z_val +" , "
+        new_attr += attr_w_val +" ); "
+        pack_count += 1
+        text = "//Output Pack \n" + new_attr +"//@special replace" + text
+        print(new_attr)
+        text = text.replace(attr_x_name,new_name +".x");
+        text = text.replace(attr_y_name,new_name +".y");
+        text = text.replace(attr_z_name,new_name +".z");
+        text = text.replace(attr_w_name,new_name +".w");
+        text = text.replace("//@special replace"," // " + item["comment"]);
     print(log)
     print(text)
 
-merge_single_to_pack()
+
+#convertRGB()

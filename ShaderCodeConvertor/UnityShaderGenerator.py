@@ -157,7 +157,6 @@ def write_cginc(content):
         par = item.split("=")[0].split(" ")
         if len(par) > 2:
             local.setdefault(par[1], ue_filter.replace_content(par[0], unity_config.mat_shaderlab_param))
-
     return res  # 将新的列表转换成字符串，每行以换行符连接起来
 
 
