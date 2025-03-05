@@ -1,5 +1,6 @@
 import random
 import pandas as pd
+import time
 from typing import List, Dict
 
 
@@ -9,17 +10,22 @@ class CardLoader:
         self.cards = pd.read_csv("BKT.csv").dropna(how='all')
         self.identity_cards = self._parse_cards("阵营身份")
         self.action_cards = self._parse_cards("关键行动")
+        self.point_cards = self._parse_cards("情报来源")
+        self.effect_cards = self._parse_cards("档案内容")
         self.buff_cards = self._parse_cards("Buff")
 
     def _parse_cards(self, card_type: str) -> List[Dict]:
         return [self._parse_card(row) for _, row in self.cards[self.cards['类型'] == card_type].iterrows()]
+    def _parse_cards_subtype(self, card_type: str,subtype: str) -> List[Dict]:
+        list = [self._parse_card(row) for _, row in self.cards[self.cards['类型'] == card_type].iterrows()]
+        return list
 
     def _parse_card(self, row) -> Dict:
         return {
             "ID": row['ID'],
+            "type": row['类型'],
             "name": row['名称'],
-            "content": row['内容'],
-            "type": row['类型']
+            "content": row['内容']
         }
 
 
@@ -28,6 +34,7 @@ class Player:
     def __init__(self, pid: int):
         self.pid = pid
         self.identity = None
+        self.backup = None
         self.hand = []
         self.resources = {'gold': 3, 'intel': 2, 'water': 1}
         self.buffs = []
@@ -61,8 +68,10 @@ class GameEngine:
         # 初始化身份分配
         for p in self.players:
             identities = random.sample(self.card_pool.identity_cards, 2)
+            mainbuff = random.sample(self.card_pool.identity_cards, 2)
             p.identity = identities[0]
-            print(f"Player {p.pid} 获得身份：{p.identity['name']}")
+            p.backup = identities[1]
+            print(f"Player {p.pid} 获得身份：{p.identity['name'],p.backup['name']}")
 
             # 初始手牌抽取
             p.hand = random.sample(self.card_pool.action_cards, 3)
@@ -90,7 +99,10 @@ class GameEngine:
         self._setup_game()
         self._build_phase()
         # 其他阶段可在此扩展...
-
+    def _log_action(self, text):
+        """记录行动日志并计算耗时"""
+        self.log.append(text)
+        time.sleep(len(text) * 0.1)  # 根据字数模拟耗时
 
 # ========== 平衡性分析公式 ==========
 def balance_metric(card):
@@ -99,7 +111,11 @@ def balance_metric(card):
     impact = 1 + card['content'].count('获得') * 0.5 - card['content'].count('消耗') * 0.3
     flexibility = 0.5 if "需" in card['content'] else 1
     return (impact * flexibility) / (cost + 1)
-
+# 平衡系数 = (效果强度 × 灵活性) / (消耗成本 + 1)
+# 其中：
+# - 效果强度 = 1 + 获得类效果数量×0.5 - 消耗类效果数量×0.3
+# - 灵活性 = 0.5（有条件限制时）或 1（无条件）
+# - 消耗成本 = 涉及资源类型的数量（金币/情报/水）
 
 # ========== 执行示例 ==========
 if __name__ == "__main__":
