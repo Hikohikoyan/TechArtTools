@@ -1,9 +1,27 @@
 import random
 import pandas as pd
 import time
+import os
 from typing import List, Dict
 
+# ========== 导出示例到TXT ==========
+log_file = "output.txt"
+log = ""
+def savelog(content):
+    if os.path.isfile(log_file):
+        with open(log_file, "w", encoding="utf-8") as f:
+            f.write(content)
+        return True
+    else:
+        print("输入文件路径非法")
+        return False
 
+
+def  print2log(s):
+    global log
+    log += "\n " + s
+    # 输出Debug Log
+    return log
 # ========== 数据加载 ==========
 class CardLoader:
     def __init__(self):
@@ -42,7 +60,7 @@ class Player:
 
     def choose_action(self, legal_actions):
         """模拟AI决策过程（简化版随机策略）"""
-        print(f"Player {self.pid} 正在思考...（策略模型：{self.strategy_model}）")
+        print2log((f"Player {self.pid} 正在思考...（策略模型：{self.strategy_model}）"))
         return random.choice(legal_actions) if legal_actions else None
 
     def __repr__(self):
@@ -71,19 +89,20 @@ class GameEngine:
             mainbuff = random.sample(self.card_pool.identity_cards, 2)
             p.identity = identities[0]
             p.backup = identities[1]
-            print(f"Player {p.pid} 获得身份：{p.identity['name'],p.backup['name']}")
-
+            t = str(f"Player {p.pid} 获得身份：{p.identity['name'],p.backup['name']}")
+            print2log(t)
             # 初始手牌抽取
             p.hand = random.sample(self.card_pool.action_cards, 3)
-            print(f"初始手牌：{[c['name'] for c in p.hand]}")
-
+            t = str(f"初始手牌：{[c['name'] for c in p.hand]}")
+            print2log(t)
     def _build_phase(self):
-        print("\n=== 建造阶段 ===")
+        print2log(("\n=== 建造阶段 ==="))
         for p in self.players:
             legal_actions = [c for c in p.hand if "建造" in c['content']]
             chosen = p.choose_action(legal_actions)
             if chosen:
-                print(f"Player {p.pid} 打出 {chosen['name']}")
+                t = str(f"Player {p.pid} 打出 {chosen['name']}")
+                print2log(t)
                 self._resolve_card_effect(p, chosen)
 
     def _resolve_card_effect(self, player, card):
@@ -93,7 +112,7 @@ class GameEngine:
                 gain = min(3, self.state.treasury['gold'])
                 player.resources['gold'] += gain
                 self.state.treasury['gold'] -= gain
-                print(f"从国库获得{gain}金币")
+                print2log((f"从国库获得{gain}金币"))
 
     def run_simulation(self):
         self._setup_game()
@@ -118,12 +137,15 @@ def balance_metric(card):
 # - 消耗成本 = 涉及资源类型的数量（金币/情报/水）
 
 # ========== 执行示例 ==========
+
+
+
 if __name__ == "__main__":
     game = GameEngine()
     game.run_simulation()
-
     # 平衡性报告
-    print("\n=== 卡牌平衡性评估 ===")
+    print2log(("\n=== 卡牌平衡性评估 ==="))
     for card in game.card_pool.action_cards:
         score = balance_metric(card)
-        print(f"{card['name']}: {score:.2f}")
+        print2log((f"{card['name']}: {score:.2f}"))
+    savelog(log)
